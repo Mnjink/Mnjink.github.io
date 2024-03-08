@@ -3,61 +3,51 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Хакерский сайт</title>
-    <style>
-        body {
-            background-color: #0f0f0f;
-            color: #00ff00;
-            font-family: 'Courier New', Courier, monospace;
-        }
-        header, section, footer {
-            margin: 20px;
-            padding: 20px;
-            border: 1px solid #00ff00;
-        }
-        nav ul {
-            list-style-type: none;
-            padding: 0;
-        }
-        nav ul li {
-            display: inline;
-            margin-right: 10px;
-        }
-        a {
-            color: #00ff00;
-            text-decoration: none;
-        }
-        a:hover {
-            text-decoration: underline;
-        }
-    </style>
+    <title>Хакерский интерфейс</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
-<header>
-    <h1>Добро пожаловать в матрицу</h1>
-</header>
-
-<nav>
-    <ul>
-        <li><a href="#section1">Секретные данные</a></li>
-        <li><a href="#section2">Операции</a></li>
-    </ul>
-</nav>
-
-<section id="section1">
-    <h2>Секретные данные</h2>
-    <p>Доступ к секретным данным предоставляется только проверенным оперативникам.</p>
-</section>
-
-<section id="section2">
-    <h2>Операции</h2>
-    <p>Наши текущие операции распределены по всему миру. Будь внимателен, агент.</p>
-</section>
-
-<footer>
-    <p>Связь с центром: hacker@matrix.net</p>
-</footer>
-
+    <div id="hackerText"></div>
+    <script src="script.js"></script>
 </body>
 </html>
+body, html {
+    height: 100%;
+    margin: 0;
+    background-color: black;
+    color: green;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+#hackerText {
+    white-space: nowrap;
+    overflow: hidden;
+    border-right: .15em solid green; /* Имитация курсора */
+    animation: typing 3.5s steps(40, end), blink-caret .75s step-end infinite;
+}
+
+/* Анимация печатания */
+@keyframes typing {
+    from { width: 0; }
+    to { width: 100%; }
+}
+
+/* Анимация мерцания курсора */
+@keyframes blink-caret {
+    from, to { border-color: transparent; }
+    50% { border-color: green; }
+}
+const text = "Проникаем в матрицу... Активация протокола...";
+const typingElement = document.getElementById('hackerText');
+let index = 0;
+
+function typeText() {
+    if (index < text.length) {
+        typingElement.innerHTML += text.charAt(index);
+        index++;
+        setTimeout(typeText, 100); // Задержка 100 мс между каждым символом
+    }
+}
+
+typeText(); // Начало анимации
+
