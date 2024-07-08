@@ -61,7 +61,12 @@
 </footer>
 
 <script>
-    function showContent(sectionId, title, content) {
+    function showContent(sectionId, content) {
+        var sections = document.querySelectorAll('section');
+        sections.forEach(function(section) {
+            section.querySelector('p').textContent = ''; // Очистка всех секций
+        });
+
         var section = document.getElementById(sectionId);
         section.querySelector('p').textContent = content;
     }
