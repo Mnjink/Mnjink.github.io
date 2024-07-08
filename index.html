@@ -60,8 +60,10 @@
 </footer>
 
 <script>
-    function showAlert(day) {
-        alert('Вы выбрали ' + day);
+    function showContent(sectionId, title, content) {
+        var section = document.getElementById(sectionId);
+        section.querySelector('h2').textContent = title;
+        section.querySelector('p').textContent = content;
     }
 </script>
 
