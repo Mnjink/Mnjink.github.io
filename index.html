@@ -105,6 +105,17 @@
             height: 1em;
             text-align: center;
         }
+        #horizontalTetris {
+            display: none; /* Скрыт по умолчанию */
+        }
+        #interactiveTetris {
+            display: none;
+            justify-content: center;
+            align-items: center;
+        }
+        #interactiveTetrisCanvas {
+            background: #000;
+        }
     </style>
 </head>
 <body>
@@ -114,14 +125,14 @@
         <h1><a href="#" onclick="showHomePage()" style="color: #00ff00; text-decoration: none;">Интерактивный сайт</a></h1>
     </header>
 
-    <div id="tetrisTextBoard" class="tetris-board"></div>
+    <div id="horizontalTetris" class="tetris-board"></div>
 
     <nav>
         <ul>
             <li><a href="#" onclick="showContent('section1', 'Сегодня мы учим что-то <a href=\'https://github.com\' target=\'_blank\' style=\'color: #00ff00; text-decoration: none;\'>новое</a>!')">День 1</a></li>
             <li><a href="#" onclick="showContent('section2', 'Сегодня мы исследуем интересные <a href=\'https://github.com\' target=\'_blank\' style=\'color: #00ff00; text-decoration: none;\'>факты</a>!')">День 2</a></li>
             <li><a href="#" onclick="showContent('section3', 'Это <a href=\'https://github.com\' target=\'_blank\' style=\'color: #00ff00; text-decoration: none;\'>база</a>.')">День 3</a></li>
-            <li><button onclick="showTetris()">Интерактив</button></li>
+            <li><button onclick="showInteractiveTetris()">Интерактив</button></li>
         </ul>
     </nav>
 
@@ -140,8 +151,8 @@
         <p></p>
     </section>
 
-    <div id="tetris" style="display: none;">
-        <canvas id="tetrisCanvas" width="300" height="600"></canvas>
+    <div id="interactiveTetris" class="tetris-board">
+        <canvas id="interactiveTetrisCanvas" width="300" height="600"></canvas>
     </div>
 </div>
 
@@ -154,15 +165,15 @@
     const TETRIS_COLS = 10;
     const TETRIS_SPEED = 500;
 
-    const tetrisBoard = document.getElementById('tetrisTextBoard');
+    const horizontalTetrisBoard = document.getElementById('horizontalTetris');
 
-    let board = Array.from({ length: TETRIS_ROWS }, () => Array(TETRIS_COLS).fill(' '));
+    let horizontalBoard = Array.from({ length: TETRIS_ROWS }, () => Array(TETRIS_COLS).fill(' '));
 
-    function drawBoard() {
-        tetrisBoard.innerHTML = board.map(row => row.map(cell => `<span class="tetris-cell">${cell}</span>`).join('')).join('<br>');
+    function drawHorizontalBoard() {
+        horizontalTetrisBoard.innerHTML = horizontalBoard.map(row => row.map(cell => `<span class="tetris-cell">${cell}</span>`).join('')).join('<br>');
     }
 
-    function dropPiece() {
+    function dropHorizontalPiece() {
         let piece = [[1, 1], [1, 1]];
         let position = { row: 0, col: Math.floor(TETRIS_COLS / 2) - 1 };
 
@@ -175,18 +186,18 @@
                 resetPiece();
             }
             placePiece();
-            drawBoard();
+            drawHorizontalBoard();
         }
 
         function placePiece() {
             piece.forEach(([r, c]) => {
-                board[position.row + r][position.col + c] = '■';
+                horizontalBoard[position.row + r][position.col + c] = '■';
             });
         }
 
         function clearPiece() {
             piece.forEach(([r, c]) => {
-                board[position.row + r][position.col + c] = ' ';
+                horizontalBoard[position.row + r][position.col + c] = ' ';
             });
         }
 
@@ -194,13 +205,13 @@
             return piece.some(([r, c]) => {
                 let newRow = position.row + r;
                 let newCol = position.col + c;
-                return newRow >= TETRIS_ROWS || board[newRow][newCol] === '■';
+                return newRow >= TETRIS_ROWS || horizontalBoard[newRow][newCol] === '■';
             });
         }
 
         function mergePiece() {
             piece.forEach(([r, c]) => {
-                board[position.row + r][position.col + c] = '■';
+                horizontalBoard[position.row + r][position.col + c] = '■';
             });
         }
 
@@ -208,16 +219,16 @@
             piece = [[1, 1], [1, 1]];
             position = { row: 0, col: Math.floor(TETRIS_COLS / 2) - 1 };
             if (collision()) {
-                board = Array.from({ length: TETRIS_ROWS }, () => Array(TETRIS_COLS).fill(' '));
+                horizontalBoard = Array.from({ length: TETRIS_ROWS }, () => Array(TETRIS_COLS).fill(' '));
             }
         }
 
         setInterval(movePiece, TETRIS_SPEED);
     }
 
-    function startTextTetris() {
-        drawBoard();
-        dropPiece();
+    function startHorizontalTetris() {
+        drawHorizontalBoard();
+        dropHorizontalPiece();
     }
 
     function showHomePage() {
@@ -226,7 +237,8 @@
             section.classList.remove('active'); // Убираем класс active со всех секций
             section.querySelector('p').innerHTML = ''; // Очистка всех параграфов
         });
-        document.getElementById('tetris').style.display = 'none'; // Скрыть тетрис
+        document.getElementById('horizontalTetris').style.display = 'block'; // Показать горизонтальный тетрис
+        document.getElementById('interactiveTetris').style.display = 'none'; // Скрыть интерактивный тетрис
     }
 
     function showContent(sectionId, content) {
@@ -239,21 +251,23 @@
         var section = document.getElementById(sectionId);
         section.querySelector('p').innerHTML = content;
         section.classList.add('active'); // Добавляем класс active к выбранной секции
-        document.getElementById('tetris').style.display = 'none'; // Скрыть тетрис
+        document.getElementById('horizontalTetris').style.display = 'none'; // Скрыть горизонтальный тетрис
+        document.getElementById('interactiveTetris').style.display = 'none'; // Скрыть интерактивный тетрис
     }
 
-    function showTetris() {
+    function showInteractiveTetris() {
         var sections = document.querySelectorAll('section');
         sections.forEach(function(section) {
             section.classList.remove('active'); // Убираем класс active со всех секций
             section.querySelector('p').innerHTML = ''; // Очистка всех параграфов
         });
-        document.getElementById('tetris').style.display = 'block'; // Показать тетрис
-        startTetris();
+        document.getElementById('horizontalTetris').style.display = 'none'; // Скрыть горизонтальный тетрис
+        document.getElementById('interactiveTetris').style.display = 'flex'; // Показать интерактивный тетрис
+        startInteractiveTetris();
     }
 
-    function startTetris() {
-        const canvas = document.getElementById('tetrisCanvas');
+    function startInteractiveTetris() {
+        const canvas = document.getElementById('interactiveTetrisCanvas');
         const context = canvas.getContext('2d');
         context.scale(20, 20);
 
@@ -487,7 +501,7 @@
         update();
     }
 
-    window.onload = startTextTetris;
+    window.onload = startHorizontalTetris;
 </script>
 
 </body>
