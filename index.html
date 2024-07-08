@@ -11,11 +11,15 @@
             font-family: 'Courier New', Courier, monospace;
             margin: 0;
             padding: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
         }
         .container {
             max-width: 800px;
             margin: 0 auto;
             padding: 20px;
+            flex: 1; /* Дает контейнеру возможность занимать оставшееся пространство */
         }
         header {
             background-color: #1f1f1f;
@@ -73,7 +77,10 @@
             background-color: #1f1f1f;
             padding: 20px;
             text-align: center;
-            margin-top: 20px; /* Увеличиваем расстояние */
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            border-top: 1px solid #00ff00;
         }
         .active {
             display: block;
@@ -103,11 +110,11 @@
         <h2 onclick="showContent('section2', 'Сегодня мы исследуем интересные факты!')">День 2</h2>
         <p></p>
     </section>
-
-    <footer>
-        <p>Связь с @@@@@@@</p>
-    </footer>
 </div>
+
+<footer>
+    <p>Связь с @@@@@@@</p>
+</footer>
 
 <script>
     function showHomePage() {
@@ -133,4 +140,5 @@
 
 </body>
 </html>
+
 
