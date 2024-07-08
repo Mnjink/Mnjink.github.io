@@ -104,14 +104,14 @@
 </div>
 
 <script>
-    function showHomePage() {
+   function showHomePage() {
         var sections = document.querySelectorAll('section');
         sections.forEach(function(section) {
             section.classList.remove('active'); // Убираем класс active со всех секций
             section.querySelector('p').textContent = ''; // Очистка всех параграфов
         });
     }
-    
+
     function showContent(sectionId, content) {
         var sections = document.querySelectorAll('section');
         sections.forEach(function(section) {
