@@ -26,6 +26,7 @@
         a {
             color: #00ff00;
             text-decoration: none;
+            cursor: pointer;
         }
         a:hover {
             text-decoration: underline;
@@ -40,19 +41,19 @@
 
 <nav>
     <ul>
-        <li><a href="#section1" onclick="showAlert('День 1')">День 1</a></li>
-        <li><a href="#section2" onclick="showAlert('День 2')">День 2</a></li>
+        <li><a href="#" onclick="showContent('section1', 'День 1', 'Сегодня мы учим что-то новое!')">День 1</a></li>
+        <li><a href="#" onclick="showContent('section2', 'День 2', 'Сегодня мы исследуем интересные факты!')">День 2</a></li>
     </ul>
 </nav>
 
 <section id="section1">
-    <h2>Что-то важное</h2>
-    <p>Доступа нет :)</p>
+    <h2 onclick="showContent('section1', 'День 1', 'Сегодня мы учим что-то новое!')">День 1</h2>
+    <p></p>
 </section>
 
 <section id="section2">
-    <h2>Интересно</h2>
-    <p>Что тут может быть ... </p>
+    <h2 onclick="showContent('section2', 'День 2', 'Сегодня мы исследуем интересные факты!')">День 2</h2>
+    <p></p>
 </section>
 
 <footer>
@@ -62,11 +63,9 @@
 <script>
     function showContent(sectionId, title, content) {
         var section = document.getElementById(sectionId);
-        section.querySelector('h2').textContent = title;
         section.querySelector('p').textContent = content;
     }
 </script>
 
 </body>
 </html>
-
