@@ -6,22 +6,22 @@
     <title>Интерактивный сайт</title>
     <style>
         body {
-            background-color: #0f0f0f;
-            color: #00ff00;
+            background-color: #121212;
+            color: #e0e0e0;
             font-family: 'Courier New', Courier, monospace;
             margin: 0;
             padding: 0;
         }
         header {
-            background-color: #1a1a1a;
+            background-color: #1f1f1f;
             padding: 20px;
             text-align: center;
-            border-bottom: 1px solid #00ff00;
+            border-bottom: 2px solid #00ff00;
         }
         nav {
-            background-color: #1a1a1a;
-            padding: 10px;
-            border-bottom: 1px solid #00ff00;
+            background-color: #1f1f1f;
+            padding: 10px 0;
+            border-bottom: 2px solid #00ff00;
         }
         nav ul {
             list-style-type: none;
@@ -37,67 +37,82 @@
             color: #00ff00;
             text-decoration: none;
             font-weight: bold;
+            transition: color 0.3s;
         }
         nav a:hover {
-            text-decoration: underline;
+            color: #ffffff;
         }
         section {
             padding: 20px;
-            border-bottom: 1px solid #00ff00;
             display: none; /* Начальное состояние - скрытые секции */
         }
         section h2 {
             cursor: pointer;
+            text-align: center;
+            border-bottom: 1px solid #00ff00;
+            padding-bottom: 10px;
         }
         section p {
-            margin-top: 10px;
+            margin-top: 20px;
+            text-align: center;
+            font-size: 1.2em;
         }
         footer {
-            background-color: #1a1a1a;
+            background-color: #1f1f1f;
             padding: 20px;
             text-align: center;
-            border-top: 1px solid #00ff00;
+            border-top: 2px solid #00ff00;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .active {
+            display: block;
         }
     </style>
 </head>
 <body>
 
-<header>
-    <h1>Интерактивный сайт</h1>
-</header>
+<div class="container">
+    <header>
+        <h1>Интерактивный сайт</h1>
+    </header>
 
-<nav>
-    <ul>
-        <li><a href="#" onclick="showContent('section1', 'Сегодня мы учим что-то новое!')">День 1</a></li>
-        <li><a href="#" onclick="showContent('section2', 'Сегодня мы исследуем интересные факты!')">День 2</a></li>
-    </ul>
-</nav>
+    <nav>
+        <ul>
+            <li><a href="#" onclick="showContent('section1', 'Сегодня мы учим что-то новое!')">День 1</a></li>
+            <li><a href="#" onclick="showContent('section2', 'Сегодня мы исследуем интересные факты!')">День 2</a></li>
+        </ul>
+    </nav>
 
-<section id="section1">
-    <h2 onclick="showContent('section1', 'Сегодня мы учим что-то новое!')">День 1</h2>
-    <p></p>
-</section>
+    <section id="section1">
+        <h2 onclick="showContent('section1', 'Сегодня мы учим что-то новое!')">День 1</h2>
+        <p></p>
+    </section>
 
-<section id="section2">
-    <h2 onclick="showContent('section2', 'Сегодня мы исследуем интересные факты!')">День 2</h2>
-    <p></p>
-</section>
+    <section id="section2">
+        <h2 onclick="showContent('section2', 'Сегодня мы исследуем интересные факты!')">День 2</h2>
+        <p></p>
+    </section>
 
-<footer>
-    <p>Связь с @@@@@@@</p>
-</footer>
+    <footer>
+        <p>Связь с @@@@@@@</p>
+    </footer>
+</div>
 
 <script>
     function showContent(sectionId, content) {
         var sections = document.querySelectorAll('section');
         sections.forEach(function(section) {
-            section.style.display = 'none'; // Скрытие всех секций
+            section.classList.remove('active'); // Убираем класс active со всех секций
             section.querySelector('p').textContent = ''; // Очистка всех параграфов
         });
 
         var section = document.getElementById(sectionId);
         section.querySelector('p').textContent = content;
-        section.style.display = 'block'; // Отображение выбранной секции
+        section.classList.add('active'); // Добавляем класс active к выбранной секции
     }
 </script>
 
