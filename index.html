@@ -3,56 +3,83 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Тестовый сайт</title>
+    <title>Интерактивный сайт</title>
     <style>
         body {
             background-color: #0f0f0f;
             color: #00ff00;
             font-family: 'Courier New', Courier, monospace;
+            margin: 0;
+            padding: 0;
         }
-        header, section, footer {
-            margin: 20px;
+        header {
+            background-color: #1a1a1a;
             padding: 20px;
-            border: 1px solid #00ff00;
+            text-align: center;
+            border-bottom: 1px solid #00ff00;
+        }
+        nav {
+            background-color: #1a1a1a;
+            padding: 10px;
+            border-bottom: 1px solid #00ff00;
         }
         nav ul {
             list-style-type: none;
+            margin: 0;
             padding: 0;
+            text-align: center;
         }
         nav ul li {
             display: inline;
-            margin-right: 10px;
+            margin: 0 15px;
         }
-        a {
+        nav a {
             color: #00ff00;
             text-decoration: none;
+            font-weight: bold;
+        }
+        nav a:hover {
+            text-decoration: underline;
+        }
+        section {
+            padding: 20px;
+            border-bottom: 1px solid #00ff00;
+            display: none; /* Начальное состояние - скрытые секции */
+        }
+        section h2 {
             cursor: pointer;
         }
-        a:hover {
-            text-decoration: underline;
+        section p {
+            margin-top: 10px;
+        }
+        footer {
+            background-color: #1a1a1a;
+            padding: 20px;
+            text-align: center;
+            border-top: 1px solid #00ff00;
         }
     </style>
 </head>
 <body>
 
 <header>
-    <h1>Тестовый сайт</h1>
+    <h1>Интерактивный сайт</h1>
 </header>
 
 <nav>
     <ul>
-        <li><a href="#" onclick="showContent('section1', 'День 1', 'Сегодня мы учим что-то новое!')">День 1</a></li>
-        <li><a href="#" onclick="showContent('section2', 'День 2', 'Сегодня мы исследуем интересные факты!')">День 2</a></li>
+        <li><a href="#" onclick="showContent('section1', 'Сегодня мы учим что-то новое!')">День 1</a></li>
+        <li><a href="#" onclick="showContent('section2', 'Сегодня мы исследуем интересные факты!')">День 2</a></li>
     </ul>
 </nav>
 
 <section id="section1">
-    <h2 onclick="showContent('section1', 'День 1', 'Сегодня мы учим что-то новое!')">День 1</h2>
+    <h2 onclick="showContent('section1', 'Сегодня мы учим что-то новое!')">День 1</h2>
     <p></p>
 </section>
 
 <section id="section2">
-    <h2 onclick="showContent('section2', 'День 2', 'Сегодня мы исследуем интересные факты!')">День 2</h2>
+    <h2 onclick="showContent('section2', 'Сегодня мы исследуем интересные факты!')">День 2</h2>
     <p></p>
 </section>
 
@@ -64,13 +91,16 @@
     function showContent(sectionId, content) {
         var sections = document.querySelectorAll('section');
         sections.forEach(function(section) {
-            section.querySelector('p').textContent = ''; // Очистка всех секций
+            section.style.display = 'none'; // Скрытие всех секций
+            section.querySelector('p').textContent = ''; // Очистка всех параграфов
         });
 
         var section = document.getElementById(sectionId);
         section.querySelector('p').textContent = content;
+        section.style.display = 'block'; // Отображение выбранной секции
     }
 </script>
 
 </body>
 </html>
+
