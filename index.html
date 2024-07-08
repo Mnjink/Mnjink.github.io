@@ -89,16 +89,21 @@
         .active {
             display: block;
         }
-        #tetris {
-            display: none; /* Начальное состояние - скрытый */
-            margin: 0 auto;
-            background: #000;
-            padding: 10px;
+        .tetris-board {
+            font-size: 1em;
+            line-height: 1em;
+            white-space: pre;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
-        #tetris canvas {
-            background: #111;
-            display: block;
-            margin: 0 auto;
+        .tetris-row {
+            display: flex;
+        }
+        .tetris-cell {
+            width: 1em;
+            height: 1em;
+            text-align: center;
         }
     </style>
 </head>
@@ -108,6 +113,8 @@
     <header>
         <h1><a href="#" onclick="showHomePage()" style="color: #00ff00; text-decoration: none;">Интерактивный сайт</a></h1>
     </header>
+
+    <div id="tetrisTextBoard" class="tetris-board"></div>
 
     <nav>
         <ul>
@@ -133,7 +140,7 @@
         <p></p>
     </section>
 
-    <div id="tetris">
+    <div id="tetris" style="display: none;">
         <canvas id="tetrisCanvas" width="300" height="600"></canvas>
     </div>
 </div>
@@ -143,6 +150,76 @@
 </footer>
 
 <script>
+    const TETRIS_ROWS = 20;
+    const TETRIS_COLS = 10;
+    const TETRIS_SPEED = 500;
+
+    const tetrisBoard = document.getElementById('tetrisTextBoard');
+
+    let board = Array.from({ length: TETRIS_ROWS }, () => Array(TETRIS_COLS).fill(' '));
+
+    function drawBoard() {
+        tetrisBoard.innerHTML = board.map(row => row.map(cell => `<span class="tetris-cell">${cell}</span>`).join('')).join('<br>');
+    }
+
+    function dropPiece() {
+        let piece = [[1, 1], [1, 1]];
+        let position = { row: 0, col: Math.floor(TETRIS_COLS / 2) - 1 };
+
+        function movePiece() {
+            clearPiece();
+            position.row++;
+            if (collision()) {
+                position.row--;
+                mergePiece();
+                resetPiece();
+            }
+            placePiece();
+            drawBoard();
+        }
+
+        function placePiece() {
+            piece.forEach(([r, c]) => {
+                board[position.row + r][position.col + c] = '■';
+            });
+        }
+
+        function clearPiece() {
+            piece.forEach(([r, c]) => {
+                board[position.row + r][position.col + c] = ' ';
+            });
+        }
+
+        function collision() {
+            return piece.some(([r, c]) => {
+                let newRow = position.row + r;
+                let newCol = position.col + c;
+                return newRow >= TETRIS_ROWS || board[newRow][newCol] === '■';
+            });
+        }
+
+        function mergePiece() {
+            piece.forEach(([r, c]) => {
+                board[position.row + r][position.col + c] = '■';
+            });
+        }
+
+        function resetPiece() {
+            piece = [[1, 1], [1, 1]];
+            position = { row: 0, col: Math.floor(TETRIS_COLS / 2) - 1 };
+            if (collision()) {
+                board = Array.from({ length: TETRIS_ROWS }, () => Array(TETRIS_COLS).fill(' '));
+            }
+        }
+
+        setInterval(movePiece, TETRIS_SPEED);
+    }
+
+    function startTextTetris() {
+        drawBoard();
+        dropPiece();
+    }
+
     function showHomePage() {
         var sections = document.querySelectorAll('section');
         sections.forEach(function(section) {
@@ -409,12 +486,9 @@
         playerReset();
         update();
     }
+
+    window.onload = startTextTetris;
 </script>
 
 </body>
 </html>
-
-</body>
-</html>
-
-
