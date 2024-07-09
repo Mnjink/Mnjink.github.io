@@ -353,12 +353,29 @@
             requestAnimationFrame(update);
         }
 
+        function autoPlay() {
+            // Automatically play the game by making decisions for the player
+            if (!collide(arena, player)) {
+                playerDrop();
+            } else {
+                playerMove(Math.floor(Math.random() * 3) - 1);
+                if (Math.random() > 0.5) playerRotate(1);
+                if (collide(arena, player)) {
+                    player.pos.y--;
+                    merge(arena, player);
+                    playerReset();
+                    arenaSweep();
+                }
+            }
+        }
+
         let dropCounter = 0;
         let dropInterval = 1000;
         let lastTime = 0;
 
         playerReset();
         update();
+        setInterval(autoPlay, 500); // Adjust the interval as needed for the speed of automatic play
     }
 
     function showHomePage() {
@@ -628,3 +645,4 @@
 
 </body>
 </html>
+
