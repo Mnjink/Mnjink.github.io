@@ -13,13 +13,16 @@
             padding: 0;
             display: flex;
             flex-direction: column;
-            min-height: 100vh;
+            justify-content: center; /* Центрирует содержимое по вертикали */
+            align-items: center; /* Центрирует содержимое по горизонтали */
+            height: 100vh;
         }
         .container {
             max-width: 800px;
-            margin: 0 auto;
             padding: 20px;
-            flex: 1; /* Дает контейнеру возможность занимать оставшееся пространство */
+            display: flex;
+            flex-direction: column;
+            align-items: center; /* Центрирует содержимое по горизонтали */
         }
         header {
             background-color: #1f1f1f;
@@ -469,13 +472,13 @@
 
         const colors = [
             null,
-            '#FF0D72',
-            '#0DC2FF',
-            '#0DFF72',
-            '#F538FF',
-            '#FF8E0D',
-            '#FFE138',
-            '#3877FF',
+            '#00ff00', // Зеленый цвет для T
+            '#00ff00', // Зеленый цвет для O
+            '#00ff00', // Зеленый цвет для L
+            '#00ff00', // Зеленый цвет для J
+            '#00ff00', // Зеленый цвет для I
+            '#00ff00', // Зеленый цвет для S
+            '#00ff00', // Зеленый цвет для Z
         ];
 
         const player = {
@@ -501,9 +504,10 @@
         update();
     }
 
-    window.onload = startHorizontalTetris;
+    window.onload = startInteractiveTetris;
 </script>
 
 </body>
 </html>
+
 
