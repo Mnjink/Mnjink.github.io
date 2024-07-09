@@ -7,33 +7,33 @@
     <style>
         body {
             background-color: #000000;
-            color: #00ff00; /* Зеленый цвет текста */
+            color: #00ff00;
             font-family: 'Courier New', Courier, monospace;
             margin: 0;
             padding: 0;
             display: flex;
             flex-direction: column;
-            align-items: center; /* Центрирует содержимое по горизонтали */
+            align-items: center;
             height: 100vh;
         }
         .container {
             max-width: 800px;
             padding: 20px;
-            flex: 1; /* Дает контейнеру возможность занимать оставшееся пространство */
+            flex: 1;
             display: flex;
             flex-direction: column;
-            align-items: center; /* Центрирует содержимое по горизонтали */
+            align-items: center;
         }
         header {
             background-color: #000000;
-            padding: 40px 20px; /* Увеличиваем отступ сверху и снизу */
+            padding: 40px 20px;
             text-align: center;
-            margin-bottom: 20px; /* Увеличиваем расстояние */
+            margin-bottom: 20px;
         }
         header h1 {
             cursor: pointer;
             transition: color 0.3s;
-            font-size: 2.5em; /* Увеличиваем размер шрифта */
+            font-size: 2.5em;
         }
         header h1:hover {
             color: #ffffff;
@@ -41,7 +41,7 @@
         nav {
             background-color: #000000;
             padding: 10px 0;
-            margin-bottom: 20px; /* Увеличиваем расстояние */
+            margin-bottom: 20px;
             text-align: center;
         }
         nav ul {
@@ -68,13 +68,13 @@
         }
         section {
             padding: 20px;
-            display: none; /* Начальное состояние - скрытые секции */
-            margin-bottom: 20px; /* Увеличиваем расстояние */
+            display: none;
+            margin-bottom: 20px;
         }
         section h2 {
             cursor: pointer;
             text-align: center;
-            margin-bottom: 20px; /* Увеличиваем расстояние */
+            margin-bottom: 20px;
         }
         section p {
             margin-top: 20px;
@@ -114,12 +114,10 @@
     </style>
 </head>
 <body>
-
 <div class="container">
     <header>
         <h1><a href="#" onclick="showHomePage()" style="color: #00ff00; text-decoration: none;">Интерактивный сайт</a></h1>
     </header>
-
     <nav>
         <ul>
             <li><a href="#" onclick="showContent('section1', 'Сегодня мы учим что-то <a href=\'https://github.com\' target=\'_blank\' style=\'color: #00ff00; text-decoration: none;\'>новое</a>!')">День 1</a></li>
@@ -148,18 +146,15 @@
         <canvas id="horizontalTetrisCanvas" width="150" height="300"></canvas>
     </div>
 </div>
-
 <footer>
     <p>Связь с <a href="https://github.com" target="_blank" style="color: #00ff00; text-decoration: none;">@@@@@@@</a></p>
 </footer>
-
 <div id="interactiveTetris" class="tetris-board">
     <canvas id="interactiveTetrisCanvas" width="300" height="600"></canvas>
     <footer>
         <p>Связь с <a href="https://github.com" target="_blank" style="color: #00ff00; text-decoration: none;">@@@@@@@</a></p>
     </footer>
 </div>
-
 <script>
     function startHorizontalTetris() {
         const canvas = document.getElementById('horizontalTetrisCanvas');
@@ -236,7 +231,7 @@
             matrix.forEach((row, y) => {
                 row.forEach((value, x) => {
                     if (value !== 0) {
-                        context.fillStyle = '#00ff00'; // Зеленый цвет
+                        context.fillStyle = '#00ff00';
                         context.fillRect(x + offset.x, y + offset.y, 1, 1);
                     }
                 });
@@ -504,7 +499,7 @@
             matrix.forEach((row, y) => {
                 row.forEach((value, x) => {
                     if (value !== 0) {
-                        context.fillStyle = '#00ff00'; // Зеленый цвет
+                        context.fillStyle = '#00ff00';
                         context.fillRect(x + offset.x,
                                          y + offset.y,
                                          1, 1);
@@ -642,7 +637,5 @@
         showHomePage();
     };
 </script>
-
 </body>
 </html>
-
