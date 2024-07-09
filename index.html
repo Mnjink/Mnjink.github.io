@@ -13,16 +13,12 @@
             padding: 0;
             display: flex;
             flex-direction: column;
-            justify-content: center; /* Центрирует содержимое по вертикали */
             align-items: center; /* Центрирует содержимое по горизонтали */
-            height: 100vh;
         }
         .container {
             max-width: 800px;
             padding: 20px;
-            display: flex;
-            flex-direction: column;
-            align-items: center; /* Центрирует содержимое по горизонтали */
+            flex: 1; /* Дает контейнеру возможность занимать оставшееся пространство */
         }
         header {
             background-color: #1f1f1f;
@@ -42,12 +38,12 @@
             background-color: #1f1f1f;
             padding: 10px 0;
             margin-bottom: 20px; /* Увеличиваем расстояние */
+            text-align: center;
         }
         nav ul {
             list-style-type: none;
             margin: 0;
             padding: 0;
-            text-align: center;
         }
         nav ul li {
             display: inline;
@@ -85,9 +81,6 @@
             background-color: #1f1f1f;
             padding: 20px;
             text-align: center;
-            position: fixed;
-            bottom: 0;
-            width: 100%;
         }
         .active {
             display: block;
@@ -96,9 +89,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
-        }
-        #horizontalTetris {
-            display: none; /* Скрыт по умолчанию */
+            margin: 20px 0;
         }
         #horizontalTetrisCanvas {
             background: #000;
@@ -107,6 +98,7 @@
             display: none;
             justify-content: center;
             align-items: center;
+            height: 100vh;
         }
         #interactiveTetrisCanvas {
             background: #000;
@@ -119,10 +111,6 @@
     <header>
         <h1><a href="#" onclick="showHomePage()" style="color: #00ff00; text-decoration: none;">Интерактивный сайт</a></h1>
     </header>
-
-    <div id="horizontalTetris" class="tetris-board">
-        <canvas id="horizontalTetrisCanvas" width="150" height="300"></canvas>
-    </div>
 
     <nav>
         <ul>
@@ -148,14 +136,18 @@
         <p></p>
     </section>
 
-    <div id="interactiveTetris" class="tetris-board">
-        <canvas id="interactiveTetrisCanvas" width="300" height="600"></canvas>
+    <div id="horizontalTetris" class="tetris-board">
+        <canvas id="horizontalTetrisCanvas" width="150" height="300"></canvas>
     </div>
 </div>
 
 <footer>
     <p>Связь с <a href="https://github.com" target="_blank" style="color: #00ff00; text-decoration: none;">@@@@@@@</a></p>
 </footer>
+
+<div id="interactiveTetris" class="tetris-board">
+    <canvas id="interactiveTetrisCanvas" width="300" height="600"></canvas>
+</div>
 
 <script>
     function startHorizontalTetris() {
