@@ -30,7 +30,7 @@
         }
 
         .container {
-            max-width: 800px;
+            max-width: 1200px;
             padding: 20px;
             flex: 1;
             display: flex;
@@ -97,6 +97,29 @@
 
         nav a:hover, nav button:hover {
             color: #ffffff;
+        }
+
+        .split-screen {
+            display: flex;
+            width: 100%;
+        }
+
+        .split-screen > div {
+            flex: 1;
+            padding: 20px;
+            border: 1px solid #00ff00;
+        }
+
+        .split-screen .right {
+            position: relative;
+        }
+
+        .split-screen .right .plus-rep {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            font-size: 1.2em;
+            animation: glow 1.5s infinite alternate;
         }
 
         section {
@@ -167,6 +190,19 @@
             <li><button onclick="showInteractiveTetris()">Интерактив</button></li>
         </ul>
     </nav>
+
+    <div class="split-screen">
+        <div class="left">
+            <p>Left content</p>
+        </div>
+        <div class="center">
+            <p>Center content</p>
+        </div>
+        <div class="right">
+            <p>Right content</p>
+            <div class="plus-rep">+rep</div>
+        </div>
+    </div>
 
     <section id="section1">
         <h2 onclick="showContent('section1', 'Сегодня мы учим что-то <a href=\'https://github.com\' target=\'_blank\' style=\'color: #00ff00; text-decoration: none;\'>новое</a>!')">День 1</h2>
