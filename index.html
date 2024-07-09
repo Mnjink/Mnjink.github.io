@@ -19,6 +19,9 @@
             max-width: 800px;
             padding: 20px;
             flex: 1; /* Дает контейнеру возможность занимать оставшееся пространство */
+            display: flex;
+            flex-direction: column;
+            align-items: center; /* Центрирует содержимое по горизонтали */
         }
         header {
             background-color: #1f1f1f;
@@ -81,6 +84,9 @@
             background-color: #1f1f1f;
             padding: 20px;
             text-align: center;
+            width: 100%;
+            position: absolute;
+            bottom: 0;
         }
         .active {
             display: block;
@@ -147,6 +153,9 @@
 
 <div id="interactiveTetris" class="tetris-board">
     <canvas id="interactiveTetrisCanvas" width="300" height="600"></canvas>
+    <footer>
+        <p>Связь с <a href="https://github.com" target="_blank" style="color: #00ff00; text-decoration: none;">@@@@@@@</a></p>
+    </footer>
 </div>
 
 <script>
@@ -324,7 +333,7 @@
             section.classList.remove('active'); // Убираем класс active со всех секций
             section.querySelector('p').innerHTML = ''; // Очистка всех параграфов
         });
-        document.getElementById('horizontalTetris').style.display = 'block'; // Показать горизонтальный тетрис
+        document.getElementById('horizontalTetris').style.display = 'flex'; // Показать горизонтальный тетрис
         document.getElementById('interactiveTetris').style.display = 'none'; // Скрыть интерактивный тетрис
     }
 
