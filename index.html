@@ -5,6 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hacker site</title>
     <style>
+        @keyframes glow {
+            0% {
+                text-shadow: 0 0 5px #00ff00, 0 0 10px #00ff00, 0 0 20px #00ff00, 0 0 30px #00ff00, 0 0 40px #00ff00, 0 0 50px #00ff00, 0 0 60px #00ff00;
+            }
+            50% {
+                text-shadow: 0 0 10px #00ff00, 0 0 20px #00ff00, 0 0 30px #00ff00, 0 0 40px #00ff00, 0 0 50px #00ff00, 0 0 60px #00ff00, 0 0 70px #00ff00;
+            }
+            100% {
+                text-shadow: 0 0 5px #00ff00, 0 0 10px #00ff00, 0 0 20px #00ff00, 0 0 30px #00ff00, 0 0 40px #00ff00, 0 0 50px #00ff00, 0 0 60px #00ff00;
+            }
+        }
+
         body {
             background-color: #000000;
             color: #00ff00;
@@ -16,6 +28,7 @@
             align-items: center;
             height: 100vh;
         }
+
         .container {
             max-width: 800px;
             padding: 20px;
@@ -23,36 +36,53 @@
             display: flex;
             flex-direction: column;
             align-items: center;
+            position: relative;
         }
+
+        .glowing-text {
+            position: absolute;
+            top: 50px;
+            right: 20px;
+            white-space: pre;
+            animation: glow 1.5s infinite alternate;
+            font-size: 1.5em;
+        }
+
         header {
             background-color: #000000;
             padding: 40px 20px;
             text-align: center;
             margin-bottom: 20px;
         }
+
         header h1 {
             cursor: pointer;
             transition: color 0.3s;
             font-size: 2.5em;
         }
+
         header h1:hover {
             color: #ffffff;
         }
+
         nav {
             background-color: #000000;
             padding: 10px 0;
             margin-bottom: 20px;
             text-align: center;
         }
+
         nav ul {
             list-style-type: none;
             margin: 0;
             padding: 0;
         }
+
         nav ul li {
             display: inline;
             margin: 0 15px;
         }
+
         nav a, nav button {
             color: #00ff00;
             background: none;
@@ -63,24 +93,29 @@
             text-decoration: none;
             font-size: 1em;
         }
+
         nav a:hover, nav button:hover {
             color: #ffffff;
         }
+
         section {
             padding: 20px;
             display: none;
             margin-bottom: 20px;
         }
+
         section h2 {
             cursor: pointer;
             text-align: center;
             margin-bottom: 20px;
         }
+
         section p {
             margin-top: 20px;
             text-align: center;
             font-size: 1.2em;
         }
+
         footer {
             background-color: #000000;
             padding: 10px 20px;
@@ -89,18 +124,22 @@
             position: fixed;
             bottom: 0;
         }
+
         .active {
             display: block;
         }
+
         .tetris-board {
             display: flex;
             justify-content: center;
             align-items: center;
             margin: 20px 0;
         }
+
         #horizontalTetrisCanvas {
             background: #000;
         }
+
         #interactiveTetris {
             display: none;
             justify-content: center;
@@ -108,6 +147,7 @@
             height: 100vh;
             flex-direction: column;
         }
+
         #interactiveTetrisCanvas {
             background: #000;
         }
@@ -144,6 +184,14 @@
 
     <div id="horizontalTetris" class="tetris-board">
         <canvas id="horizontalTetrisCanvas" width="150" height="300"></canvas>
+    </div>
+    <div class="glowing-text">
+        ░░░░░░░██████╗░███████╗██████╗░░<br>
+        ░░██╗░░██╔══██╗██╔════╝██╔══██╗░<br>
+        ██████╗██████╔╝█████╗░░██████╔╝░<br>
+        ╚═██╔═╝██╔══██╗██╔══╝░░██╔═══╝░░<br>
+        ░░╚═╝░░██║░░██║███████╗██║░░░░░░<br>
+        ░░░░░░░╚═╝░░╚═╝╚══════╝╚═╝░░░░░░
     </div>
 </div>
 <footer>
