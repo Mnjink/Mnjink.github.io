@@ -3,130 +3,163 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Интерактивный сайт</title>
+    <title>Hacker site</title>
     <style>
-        body {
-            background-color: #000000;
-            color: #00ff00; /* Зеленый цвет текста */
-            font-family: 'Courier New', Courier, monospace;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
+        @keyframes glow {
+            0% {
+                text-shadow: 0 0 5px #00ff00, 0 0 10px #00ff00, 0 0 20px #00ff00, 0 0 30px #00ff00, 0 0 40px #00ff00, 0 0 50px #00ff00, 0 0 60px #00ff00;
+            }
+            50% {
+                text-shadow: 0 0 10px #00ff00, 0 0 20px #00ff00, 0 0 30px #00ff00, 0 0 40px #00ff00, 0 0 50px #00ff00, 0 0 60px #00ff00, 0 0 70px #00ff00;
+            }
+            100% {
+                text-shadow: 0 0 5px #00ff00, 0 0 10px #00ff00, 0 0 20px #00ff00, 0 0 30px #00ff00, 0 0 40px #00ff00, 0 0 50px #00ff00, 0 0 60px #00ff00;
+            }
         }
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 20px;
-            flex: 1; /* Дает контейнеру возможность занимать оставшееся пространство */
-        }
-        header {
-            background-color: #1f1f1f;
-            padding: 40px 20px; /* Увеличиваем отступ сверху и снизу */
-            text-align: center;
-            margin-bottom: 20px; /* Увеличиваем расстояние */
-        }
-        header h1 {
-            cursor: pointer;
-            transition: color 0.3s;
-            font-size: 2.5em; /* Увеличиваем размер шрифта */
-        }
-        header h1:hover {
-            color: #ffffff;
-        }
-        nav {
-            background-color: #1f1f1f;
-            padding: 10px 0;
-            margin-bottom: 20px; /* Увеличиваем расстояние */
-        }
-        nav ul {
-            list-style-type: none;
-            margin: 0;
-            padding: 0;
-            text-align: center;
-        }
-        nav ul li {
-            display: inline;
-            margin: 0 15px;
-        }
-        nav a, nav button {
-            color: #00ff00;
-            background: none;
-            border: none;
-            font-weight: bold;
-            cursor: pointer;
-            transition: color 0.3s;
-            text-decoration: none;
-            font-size: 1em;
-        }
-        nav a:hover, nav button:hover {
-            color: #ffffff;
-        }
-        section {
-            padding: 20px;
-            display: none; /* Начальное состояние - скрытые секции */
-            margin-bottom: 20px; /* Увеличиваем расстояние */
-        }
-        section h2 {
-            cursor: pointer;
-            text-align: center;
-            margin-bottom: 20px; /* Увеличиваем расстояние */
-        }
-        section p {
-            margin-top: 20px;
-            text-align: center;
-            font-size: 1.2em;
-        }
-        footer {
-            background-color: #1f1f1f;
-            padding: 20px;
-            text-align: center;
-            position: fixed;
-            bottom: 0;
-            width: 100%;
-        }
-        .active {
-            display: block;
-        }
-        .tetris-board {
-            font-size: 1em;
-            line-height: 1em;
-            white-space: pre;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-        .tetris-row {
-            display: flex;
-        }
-        .tetris-cell {
-            width: 1em;
-            height: 1em;
-            text-align: center;
-        }
-        #horizontalTetris {
-            display: none; /* Скрыт по умолчанию */
-        }
-        #interactiveTetris {
-            display: none;
-            justify-content: center;
-            align-items: center;
-        }
-        #interactiveTetrisCanvas {
-            background: #000;
-        }
-    </style>
+css
+Копировать код
+    body {
+        background-color: #000000;
+        color: #00ff00;
+        font-family: 'Courier New', Courier, monospace;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        height: 100vh;
+    }
+
+    .container {
+        max-width: 1200px;
+        padding: 20px;
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        position: relative;
+    }
+
+    .glowing-text {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        right: 20px;
+        white-space: pre;
+        animation: glow 1.5s infinite alternate;
+        font-size: 1.5em;
+    }
+
+    header {
+        background-color: #000000;
+        padding: 40px 20px;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    header h1 {
+        cursor: pointer;
+        transition: color 0.3s;
+        font-size: 2.5em;
+    }
+
+    header h1:hover {
+        color: #ffffff;
+    }
+
+    nav {
+        background-color: #000000;
+        padding: 10px 0;
+        margin-bottom: 20px;
+        text-align: center;
+    }
+
+    nav ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+    }
+
+    nav ul li {
+        display: inline;
+        margin: 0 15px;
+    }
+
+    nav a, nav button {
+        color: #00ff00;
+        background: none;
+        border: none;
+        font-weight: bold;
+        cursor: pointer;
+        transition: color 0.3s;
+        text-decoration: none;
+        font-size: 1em;
+    }
+
+    nav a:hover, nav button:hover {
+        color: #ffffff;
+    }
+
+    section {
+        padding: 20px;
+        display: none;
+        margin-bottom: 20px;
+    }
+
+    section h2 {
+        cursor: pointer;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    section p {
+        margin-top: 20px;
+        text-align: center;
+        font-size: 1.2em;
+    }
+
+    footer {
+        background-color: #000000;
+        padding: 10px 20px;
+        text-align: center;
+        width: 100%;
+        position: fixed;
+        bottom: 0;
+    }
+
+    .active {
+        display: block;
+    }
+
+    .tetris-board {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 20px 0;
+    }
+
+    #horizontalTetrisCanvas {
+        background: #000;
+    }
+
+    #interactiveTetris {
+        display: none;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        flex-direction: column;
+    }
+
+    #interactiveTetrisCanvas {
+        background: #000;
+    }
+</style>
 </head>
 <body>
-
 <div class="container">
     <header>
         <h1><a href="#" onclick="showHomePage()" style="color: #00ff00; text-decoration: none;">Интерактивный сайт</a></h1>
     </header>
-
-    <div id="horizontalTetris" class="tetris-board"></div>
-
     <nav>
         <ul>
             <li><a href="#" onclick="showContent('section1', 'Сегодня мы учим что-то <a href=\'https://github.com\' target=\'_blank\' style=\'color: #00ff00; text-decoration: none;\'>новое</a>!')">День 1</a></li>
@@ -135,108 +168,502 @@
             <li><button onclick="showInteractiveTetris()">Интерактив</button></li>
         </ul>
     </nav>
+php
+Копировать код
+<section id="section1">
+    <h2 onclick="showContent('section1', 'Сегодня мы учим что-то <a href=\'https://github.com\' target=\'_blank\' style=\'color: #00ff00; text-decoration: none;\'>новое</a>!')">День 1</h2>
+    <p></p>
+</section>
 
-    <section id="section1">
-        <h2 onclick="showContent('section1', 'Сегодня мы учим что-то <a href=\'https://github.com\' target=\'_blank\' style=\'color: #00ff00; text-decoration: none;\'>новое</a>!')">День 1</h2>
-        <p></p>
-    </section>
+<section id="section2">
+    <h2 onclick="showContent('section2', 'Сегодня мы исследуем интересные <a href=\'https://github.com\' target=\'_blank\' style=\'color: #00ff00; text-decoration: none;\'>факты</a>!')">День 2</h2>
+    <p></p>
+</section>
 
-    <section id="section2">
-        <h2 onclick="showContent('section2', 'Сегодня мы исследуем интересные <a href=\'https://github.com\' target=\'_blank\' style=\'color: #00ff00; text-decoration: none;\'>факты</a>!')">День 2</h2>
-        <p></p>
-    </section>
+<section id="section3">
+    <h2 onclick="showContent('section3', 'Это <a href=\'https://github.com\' target=\'_blank\' style=\'color: #00ff00; text-decoration: none;\'>база</a>.')">День 3</h2>
+    <p></p>
+</section>
 
-    <section id="section3">
-        <h2 onclick="showContent('section3', 'Это <a href=\'https://github.com\' target=\'_blank\' style=\'color: #00ff00; text-decoration: none;\'>база</a>.')">День 3</h2>
-        <p></p>
-    </section>
-
-    <div id="interactiveTetris" class="tetris-board">
-        <canvas id="interactiveTetrisCanvas" width="300" height="600"></canvas>
-    </div>
+<div id="horizontalTetris" class="tetris-board">
+    <canvas id="horizontalTetrisCanvas" width="150" height="300"></canvas>
 </div>
-
+</div>
 <footer>
     <p>Связь с <a href="https://github.com" target="_blank" style="color: #00ff00; text-decoration: none;">@@@@@@@</a></p>
 </footer>
-
+<div id="interactiveTetris" class="tetris-board">
+    <canvas id="interactiveTetrisCanvas" width="300" height="600"></canvas>
+    <footer>
+        <p>Связь с <a href="https://github.com" target="_blank" style="color: #00ff00; text-decoration: none;">@@@@@@@</a></p>
+    </footer>
+</div>
 <script>
-    const TETRIS_ROWS = 20;
-    const TETRIS_COLS = 10;
-    const TETRIS_SPEED = 500;
-
-    const horizontalTetrisBoard = document.getElementById('horizontalTetris');
-
-    let horizontalBoard = Array.from({ length: TETRIS_ROWS }, () => Array(TETRIS_COLS).fill(' '));
-
-    function drawHorizontalBoard() {
-        horizontalTetrisBoard.innerHTML = horizontalBoard.map(row => row.map(cell => `<span class="tetris-cell">${cell}</span>`).join('')).join('<br>');
-    }
-
-    function dropHorizontalPiece() {
-        let piece = [[1, 1], [1, 1]];
-        let position = { row: 0, col: Math.floor(TETRIS_COLS / 2) - 1 };
-
-        function movePiece() {
-            clearPiece();
-            position.row++;
-            if (collision()) {
-                position.row--;
-                mergePiece();
-                resetPiece();
-            }
-            placePiece();
-            drawHorizontalBoard();
-        }
-
-        function placePiece() {
-            piece.forEach(([r, c]) => {
-                horizontalBoard[position.row + r][position.col + c] = '■';
-            });
-        }
-
-        function clearPiece() {
-            piece.forEach(([r, c]) => {
-                horizontalBoard[position.row + r][position.col + c] = ' ';
-            });
-        }
-
-        function collision() {
-            return piece.some(([r, c]) => {
-                let newRow = position.row + r;
-                let newCol = position.col + c;
-                return newRow >= TETRIS_ROWS || horizontalBoard[newRow][newCol] === '■';
-            });
-        }
-
-        function mergePiece() {
-            piece.forEach(([r, c]) => {
-                horizontalBoard[position.row + r][position.col + c] = '■';
-            });
-        }
-
-        function resetPiece() {
-            piece = [[1, 1], [1, 1]];
-            position = { row: 0, col: Math.floor(TETRIS_COLS / 2) - 1 };
-            if (collision()) {
-                horizontalBoard = Array.from({ length: TETRIS_ROWS }, () => Array(TETRIS_COLS).fill(' '));
-            }
-        }
-
-        setInterval(movePiece, TETRIS_SPEED);
-    }
-
     function startHorizontalTetris() {
-        drawHorizontalBoard();
-        dropHorizontalPiece();
+        const canvas = document.getElementById('horizontalTetrisCanvas');
+        const context = canvas.getContext('2d');
+        context.scale(10, 10);
+scss
+Копировать код
+    const arena = createMatrix(10, 20);
+    let player = {
+        pos: { x: 0, y: 0 },
+        matrix: null,
+        nextPiece: getRandomPiece()
+    };
+
+    function createMatrix(w, h) {
+        const matrix = [];
+        while (h--) {
+            matrix.push(new Array(w).fill(0));
+        }
+        return matrix;
     }
 
-    function showHomePage() {
-        var sections = document.querySelectorAll('section');
-        sections.forEach(function(section) {
-            section.classList.remove('active'); // Убираем класс active со всех секций
-            section.querySelector('p').innerHTML = ''; // Очистка всех параграфов
-        });
-        document.getElementById('horizontalTetris').style.display = 'block'; // Показать горизонтальный тетрис
-        document.getElementById('interactiveTetris').style.display = 'none'; // Скрыть интерактивный тетрис
+    function createPiece(type) {
+        if (type === 'T') {
+            return [                [0, 0, 0],
+                [1, 1, 1],
+                [0, 1, 0],
+            ];
+        } else if (type === 'O') {
+            return [                [2, 2],
+                [2, 2],
+            ];
+        } else if (type === 'L') {
+            return [                [0, 3, 0],
+                [0, 3, 0],
+                [0, 3, 3],
+            ];
+        } else if (type === 'J') {
+            return [                [0, 4, 0],
+                [0, 4, 0],
+                [4, 4, 0],
+            ];
+        } else if (type === 'I') {
+            return [                [0, 5, 0, 0],
+                [0, 5, 0, 0],
+                [0, 5, 0, 0],
+                [0, 5, 0, 0],
+            ];
+        } else if (type === 'S') {
+            return [                [0, 6, 6],
+                [6, 6, 0],
+                [0, 0, 0],
+            ];
+        } else if (type === 'Z') {
+            return [                [7, 7, 0],
+                [0, 7, 7],
+                [0, 0, 0],
+            ];
+        }
     }
+
+    function getRandomPiece() {
+        const pieces = 'TJLOSZI';
+        return createPiece(pieces[pieces.length * Math.random() | 0]);
+    }
+
+    function drawMatrix(matrix, offset) {
+        matrix.forEach((row, y) => {
+            row.forEach((value, x) => {
+                if (value !== 0) {
+                    context.fillStyle = '#00ff00';
+                    context.fillRect(x + offset.x, y + offset.y, 1, 1);
+                }
+            });
+        });
+    }
+
+    function draw() {
+        context.fillStyle = '#000';
+        context.fillRect(0, 0, canvas.width, canvas.height);
+        drawMatrix(arena, { x: 0, y: 0 });
+        drawMatrix(player.matrix, player.pos);
+    }
+
+    function merge(arena, player) {
+        player.matrix.forEach((row, y) => {
+            row.forEach((value, x) => {
+                if (value !== 0) {
+                    arena[y + player.pos.y][x + player.pos.x] = value;
+                }
+            });
+        });
+    }
+
+    function playerDrop() {
+        player.pos.y++;
+        if (collide(arena, player)) {
+            player.pos.y--;
+            merge(arena, player);
+            playerReset();
+            arenaSweep();
+            updateScore();
+        }
+        dropCounter = 0;
+    }
+
+    function playerMove(dir) {
+        player.pos.x += dir;
+        if (collide(arena, player)) {
+            player.pos.x -= dir;
+        }
+    }
+
+    function playerReset() {
+        player.matrix = player.nextPiece;
+        player.nextPiece = getRandomPiece();
+        player.pos.y = 0;
+        player.pos.x = (arena[0].length / 2 | 0) - (player.matrix[0].length / 2 | 0);
+        if (collide(arena, player)) {
+            arena.forEach(row => row.fill(0));
+        }
+    }
+
+    function rotate(matrix, dir) {
+        for (let y = 0; y < matrix.length; ++y) {
+            for (let x = 0; x < y; ++x) {
+                [matrix[x][y], matrix[y][x]] = [matrix[y][x], matrix[x][y]];
+            }
+        }
+        if (dir > 0) {
+            matrix.forEach(row => row.reverse());
+        } else {
+            matrix.reverse();
+        }
+    }
+
+    function playerRotate(dir) {
+        const pos = player.pos.x;
+        let offset = 1;
+        rotate(player.matrix, dir);
+        while (collide(arena, player)) {
+            player.pos.x += offset;
+            offset = -(offset + (offset > 0 ? 1 : -1));
+            if (offset > player.matrix[0].length) {
+                rotate(player.matrix, -dir);
+                player.pos.x = pos;
+                return;
+            }
+        }
+    }
+
+    function collide(arena, player) {
+        const [m, o] = [player.matrix, player.pos];
+        for (let y = 0; y < m.length; ++y) {
+            for (let x = 0; x < m[y].length; ++x) {
+                if (m[y][x] !== 0 &&
+                    (arena[y + o.y] && arena[y + o.y][x + o.x]) !== 0) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    function arenaSweep() {
+        outer: for (let y = arena.length - 1; y > 0; --y) {
+            for (let x = 0; x < arena[y].length; ++x) {
+                if (arena[y][x] === 0) {
+                    continue outer;
+                }
+            }
+            const row = arena.splice(y, 1)[0].fill(0);
+            arena.unshift(row);
+        }
+    }
+
+    function update(time = 0) {
+        const deltaTime = time - lastTime;
+        lastTime = time;
+        dropCounter += deltaTime;
+        if (dropCounter > dropInterval) {
+            playerDrop();
+        }
+        draw();
+        requestAnimationFrame(update);
+    }
+
+    function autoPlay() {
+        // Automatically play the game by making decisions for the player
+        if (!collide(arena, player)) {
+            playerDrop();
+        } else {
+            playerMove(Math.floor(Math.random() * 3) - 1);
+            if (Math.random() > 0.5) playerRotate(1);
+            if (collide(arena, player)) {
+                player.pos.y--;
+                merge(arena, player);
+                playerReset();
+                arenaSweep();
+            }
+        }
+    }
+
+    let dropCounter = 0;
+    let dropInterval = 1000;
+    let lastTime = 0;
+
+    playerReset();
+    update();
+    setInterval(autoPlay, 500); // Adjust the interval as needed for the speed of automatic play
+}
+
+function showHomePage() {
+    var sections = document.querySelectorAll('section');
+    sections.forEach(function(section) {
+        section.classList.remove('active'); // Убираем класс active со всех секций
+        section.querySelector('p').innerHTML = ''; // Очистка всех параграфов
+    });
+    document.getElementById('horizontalTetris').style.display = 'flex'; // Показать горизонтальный тетрис
+    document.getElementById('interactiveTetris').style.display = 'none'; // Скрыть интерактивный тетрис
+}
+
+function showContent(sectionId, content) {
+    var sections = document.querySelectorAll('section');
+    sections.forEach(function(section) {
+        section.classList.remove('active'); // Убираем класс active со всех секций
+        section.querySelector('p').innerHTML = ''; // Очистка всех параграфов
+    });
+
+    var section = document.getElementById(sectionId);
+    section.querySelector('p').innerHTML = content;
+    section.classList.add('active'); // Добавляем класс active к выбранной секции
+    document.getElementById('horizontalTetris').style.display = 'none'; // Скрыть горизонтальный тетрис
+    document.getElementById('interactiveTetris').style.display = 'none'; // Скрыть интерактивный тетрис
+}
+
+function showInteractiveTetris() {
+    var sections = document.querySelectorAll('section');
+    sections.forEach(function(section) {
+        section.classList.remove('active'); // Убираем класс active со всех секций
+        section.querySelector('p').innerHTML = ''; // Очистка всех параграфов
+    });
+    document.getElementById('horizontalTetris').style.display = 'none'; // Скрыть горизонтальный тетрис
+    document.getElementById('interactiveTetris').style.display = 'flex'; // Показать интерактивный тетрис
+    startInteractiveTetris();
+}
+
+function startInteractiveTetris() {
+    const canvas = document.getElementById('interactiveTetrisCanvas');
+    const context = canvas.getContext('2d');
+    context.scale(20, 20);
+
+    function arenaSweep() {
+        outer: for (let y = arena.length - 1; y > 0; --y) {
+            for (let x = 0; x < arena[y].length; ++x) {
+                if (arena[y][x] === 0) {
+                    continue outer;
+                }
+            }
+
+            const row = arena.splice(y, 1)[0].fill(0);
+            arena.unshift(row);
+            ++y;
+        }
+    }
+
+    function collide(arena, player) {
+        const [m, o] = [player.matrix, player.pos];
+        for (let y = 0; y < m.length; ++y) {
+            for (let x = 0; x < m[y].length; ++x) {
+                if (m[y][x] !== 0 &&
+                   (arena[y + o.y] &&
+                    arena[y + o.y][x + o.x]) !== 0) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    function createMatrix(w, h) {
+        const matrix = [];
+        while (h--) {
+            matrix.push(new Array(w).fill(0));
+        }
+        return matrix;
+    }
+
+    function createPiece(type) {
+        if (type === 'T') {
+            return [                [0, 0, 0],
+                [1, 1, 1],
+                [0, 1, 0],
+            ];
+        } else if (type === 'O') {
+            return [                [2, 2],
+                [2, 2],
+            ];
+        } else if (type === 'L') {
+            return [                [0, 3, 0],
+                [0, 3, 0],
+                [0, 3, 3],
+            ];
+        } else if (type === 'J') {
+            return [                [0, 4, 0],
+                [0, 4, 0],
+                [4, 4, 0],
+            ];
+        } else if (type === 'I') {
+            return [                [0, 5, 0, 0],
+                [0, 5, 0, 0],
+                [0, 5, 0, 0],
+                [0, 5, 0, 0],
+            ];
+        } else if (type === 'S') {
+            return [                [0, 6, 6],
+                [6, 6, 0],
+                [0, 0, 0],
+            ];
+        } else if (type === 'Z') {
+            return [                [7, 7, 0],
+                [0, 7, 7],
+                [0, 0, 0],
+            ];
+        }
+    }
+
+    function drawMatrix(matrix, offset) {
+        matrix.forEach((row, y) => {
+            row.forEach((value, x) => {
+                if (value !== 0) {
+                    context.fillStyle = '#00ff00';
+                    context.fillRect(x + offset.x,
+                                     y + offset.y,
+                                     1, 1);
+                }
+            });
+        });
+    }
+
+    function draw() {
+        context.fillStyle = '#000';
+        context.fillRect(0, 0, canvas.width, canvas.height);
+
+        drawMatrix(arena, {x: 0, y: 0});
+        drawMatrix(player.matrix, player.pos);
+    }
+
+    function merge(arena, player) {
+        player.matrix.forEach((row, y) => {
+            row.forEach((value, x) => {
+                if (value !== 0) {
+                    arena[y + player.pos.y][x + player.pos.x] = value;
+                }
+            });
+        });
+    }
+
+    function rotate(matrix, dir) {
+        for (let y = 0; y < matrix.length; ++y) {
+            for (let x = 0; x < y; ++x) {
+                [                    matrix[x][y],
+                    matrix[y][x],
+                ] = [                    matrix[y][x],
+                    matrix[x][y],
+                ];
+            }
+        }
+
+        if (dir > 0) {
+            matrix.forEach(row => row.reverse());
+        } else {
+            matrix.reverse();
+        }
+    }
+
+    function playerDrop() {
+        player.pos.y++;
+        if (collide(arena, player)) {
+            player.pos.y--;
+            merge(arena, player);
+            playerReset();
+            arenaSweep();
+        }
+        dropCounter = 0;
+    }
+
+    function playerMove(dir) {
+        player.pos.x += dir;
+        if (collide(arena, player)) {
+            player.pos.x -= dir;
+        }
+    }
+
+    function playerReset() {
+        const pieces = 'TJLOSZI';
+        player.matrix = createPiece(pieces[pieces.length * Math.random() | 0]);
+        player.pos.y = 0;
+        player.pos.x = (arena[0].length / 2 | 0) -
+                       (player.matrix[0].length / 2 | 0);
+        if (collide(arena, player)) {
+            arena.forEach(row => row.fill(0));
+        }
+    }
+
+    function playerRotate(dir) {
+        const pos = player.pos.x;
+        let offset = 1;
+        rotate(player.matrix, dir);
+        while (collide(arena, player)) {
+            player.pos.x += offset;
+            offset = -(offset + (offset > 0 ? 1 : -1));
+            if (offset > player.matrix[0].length) {
+                rotate(player.matrix, -dir);
+                player.pos.x = pos;
+                return;
+            }
+        }
+    }
+
+    let dropCounter = 0;
+    let dropInterval = 1000;
+
+    let lastTime = 0;
+    function update(time = 0) {
+        const deltaTime = time - lastTime;
+        lastTime = time;
+
+        dropCounter += deltaTime;
+        if (dropCounter > dropInterval) {
+            playerDrop();
+        }
+
+        draw();
+        requestAnimationFrame(update);
+    }
+
+    const arena = createMatrix(10, 20);
+
+    const player = {
+        pos: {x: 0, y: 0},
+        matrix: null,
+    };
+
+    document.addEventListener('keydown', event => {
+        if (event.keyCode === 37) {
+            playerMove(-1);
+        } else if (event.keyCode === 39) {
+            playerMove(1);
+        } else if (event.keyCode === 40) {
+            playerDrop();
+        } else if (event.keyCode === 81) {
+            playerRotate(-1);
+        } else if (event.keyCode === 87) {
+            playerRotate(1);
+        }
+    });
+
+    playerReset();
+    update();
+}
+
+window.onload = function() {
+    startHorizontalTetris();
+    showHomePage();
+};
+</script>
+</body>
+</html>
