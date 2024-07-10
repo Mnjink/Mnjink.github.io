@@ -99,21 +99,6 @@
             color: #ffffff;
         }
 
-        .split-screen {
-            display: flex;
-            width: 100%;
-        }
-
-        .split-screen > div {
-            flex: 1;
-            padding: 20px;
-            border: 1px solid #00ff00;
-        }
-
-        .split-screen .right {
-            position: relative;
-        }
-
         section {
             padding: 20px;
             display: none;
@@ -182,16 +167,6 @@
             <li><button onclick="showInteractiveTetris()">Интерактив</button></li>
         </ul>
     </nav>
-
-    <div class="split-screen">
-        <div class="left">
-            <p>Left content</p>
-        </div>
-        <div class="center">
-            <p>Center content</p>
-        </div>
-        
-    </div>
 
     <section id="section1">
         <h2 onclick="showContent('section1', 'Сегодня мы учим что-то <a href=\'https://github.com\' target=\'_blank\' style=\'color: #00ff00; text-decoration: none;\'>новое</a>!')">День 1</h2>
