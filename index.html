@@ -93,6 +93,7 @@
             text-align: center;
             margin-bottom: 20px;
             position: relative;
+            background-color: rgba(0, 0, 0, 0.5); /* Полупрозрачный фон */
         }
 
         header h1 {
@@ -112,6 +113,7 @@
             text-align: center;
             z-index: 2;
             position: relative;
+            background-color: rgba(0, 0, 0, 0.5); /* Полупрозрачный фон */
         }
 
         nav ul {
@@ -144,6 +146,7 @@
             padding: 20px;
             display: none;
             margin-bottom: 20px;
+            background-color: rgba(0, 0, 0, 0.5); /* Полупрозрачный фон */
         }
 
         section h2 {
@@ -211,23 +214,19 @@
             <li><button onclick="showInteractiveTetris()">Интерактив</button></li>
         </ul>
     </nav>
-
-<section id="section1">
-    <h2 onclick="showContent('section1', 'Сегодня мы учим что-то <a href=\'https://github.com\' target=\'_blank\' style=\'color: #00ff00; text-decoration: none;\'>новое</a>!')">День 1</h2>
-    <p></p>
-</section>
-
-<section id="section2">
-    <h2 onclick="showContent('section2', 'Сегодня мы исследуем интересные <a href=\'https://github.com\' target=\'_blank\' style=\'color: #00ff00; text-decoration: none;\'>факты</a>!')">День 2</h2>
-    <p></p>
-</section>
-
-<section id="section3">
-    <h2 onclick="showContent('section3', 'Это <a href=\'https://github.com\' target=\'_blank\' style=\'color: #00ff00; text-decoration: none;\'>база</a>.')">День 3</h2>
-    <p></p>
-</section>
-
-<div id="horizontalTetris" class="tetris-board"></div>
+    <section id="section1">
+        <h2 onclick="showContent('section1', 'Сегодня мы учим что-то <a href=\'https://github.com\' target=\'_blank\' style=\'color: #00ff00; text-decoration: none;\'>новое</a>!')">День 1</h2>
+        <p></p>
+    </section>
+    <section id="section2">
+        <h2 onclick="showContent('section2', 'Сегодня мы исследуем интересные <a href=\'https://github.com\' target=\'_blank\' style=\'color: #00ff00; text-decoration: none;\'>факты</a>!')">День 2</h2>
+        <p></p>
+    </section>
+    <section id="section3">
+        <h2 onclick="showContent('section3', 'Это <a href=\'https://github.com\' target=\'_blank\' style=\'color: #00ff00; text-decoration: none;\'>база</a>.')">День 3</h2>
+        <p></p>
+    </section>
+    <div id="horizontalTetris" class="tetris-board"></div>
 </div>
 <footer>
     <p>Связь с <a href="https://github.com" target="_blank" style="color: #00ff00; text-decoration: none;">@@@@@@@</a></p>
