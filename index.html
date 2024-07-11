@@ -82,6 +82,9 @@
             white-space: pre;
             animation: glow 1.5s infinite alternate;
             font-size: 1.5em;
+            background-color: rgba(0, 0, 0, 0.5); /* Полупрозрачный фон */
+            padding: 10px;
+            border-radius: 5px;
         }
 
         header {
@@ -156,12 +159,13 @@
         }
 
         footer {
-            background-color: #000000;
+            background-color: rgba(0, 0, 0, 0.5); /* Полупрозрачный фон */
             padding: 10px 20px;
             text-align: center;
             width: 100%;
             position: fixed;
             bottom: 0;
+            z-index: 1; /* Убедитесь, что футер выше фона */
         }
 
         .active {
@@ -203,39 +207,39 @@
         <ul>
             <li><a href="#" onclick="showContent('section1', 'Сегодня мы учим что-то <a href=\'https://github.com\' target=\'_blank\' style=\'color: #00ff00; text-decoration: none;\'>новое</a>!')">День 1</a></li>
             <li><a href="#" onclick="showContent('section2', 'Сегодня мы исследуем интересные <a href=\'https://github.com\' target=\'_blank\' style=\'color: #00ff00; text-decoration: none;\'>факты</a>!')">День 2</a></li>
-            <li><a href="#" onclick="showContent('section3', 'Это <a href=\'https://github.com\' target=\'_blank\' style=\'color: #00ff00; text-decoration: none;\'>база</а>.')">День 3</a></li>
+            <li><a href="#" onclick="showContent('section3', 'Это <a href=\'https://github.com\' target=\'_blank\' style=\'color: #00ff00; text-decoration: none;\'>база</a>.')">День 3</a></li>
             <li><button onclick="showInteractiveTetris()">Интерактив</button></li>
         </ul>
     </nav>
 
 <section id="section1">
-    <h2 onclick="showContent('section1', 'Сегодня мы учим что-то <a href=\'https://github.com\' target=\'_blank\' style=\'color: #00ff00; text-decoration: none;\'>новое</а>!')">День 1</h2>
+    <h2 onclick="showContent('section1', 'Сегодня мы учим что-то <a href=\'https://github.com\' target=\'_blank\' style=\'color: #00ff00; text-decoration: none;\'>новое</a>!')">День 1</h2>
     <p></p>
 </section>
 
 <section id="section2">
-    <h2 onclick="showContent('section2', 'Сегодня мы исследуем интересные <a href=\'https://github.com\' target=\'_blank\' style=\'color: #00ff00; text-decoration: none;\'>факты</а>!')">День 2</h2>
+    <h2 onclick="showContent('section2', 'Сегодня мы исследуем интересные <a href=\'https://github.com\' target=\'_blank\' style=\'color: #00ff00; text-decoration: none;\'>факты</a>!')">День 2</h2>
     <p></p>
 </section>
 
 <section id="section3">
-    <h2 onclick="showContent('section3', 'Это <a href=\'https://github.com\' target=\'_blank\' style=\'color: #00ff00; text-decoration: none;\'>база</а>.')">День 3</h2>
+    <h2 onclick="showContent('section3', 'Это <a href=\'https://github.com\' target=\'_blank\' style=\'color: #00ff00; text-decoration: none;\'>база</a>.')">День 3</h2>
     <p></p>
 </section>
 
 <div id="horizontalTetris" class="tetris-board"></div>
 </div>
 <footer>
-    <p>Связь с <a href="https://github.com" target="_blank" style="color: #00ff00; text-decoration: none;">@@@@@@@</а></p>
+    <p>Связь с <a href="https://github.com" target="_blank" style="color: #00ff00; text-decoration: none;">@@@@@@@</a></p>
 </footer>
 <div id="interactiveTetris" class="tetris-board">
     <h1 style="color: #00ff00; text-align: center;">Интерактивный сайт</h1>
     <nav>
         <ul>
-            <li><a href="#" onclick="showContent('section1', 'Сегодня мы учим что-то <a href=\'https://github.com\' target=\'_blank\' style=\'color: #00ff00; text-decoration: none;\'>новое</а>!')">День 1</а></ли>
-            <li><a href="#" onclick="showContent('section2', 'Сегодня мы исследуем интересные <a href=\'https://github.com\' target=\'_blank\' style=\'color: #00ff00; text-decoration: none;\'>факты</а>!')">День 2</а></ли>
-            <ли><а href="#" onclick="showContent('section3', 'Это <a href=\'https://github.com\' target=\'_blank\' style=\'color: #00ff00; text-decoration: none;\'>база</а>.')">День 3</а></ли>
-        </ул>
+            <li><a href="#" onclick="showContent('section1', 'Сегодня мы учим что-то <a href=\'https://github.com\' target=\'_blank\' style=\'color: #00ff00; text-decoration: none;\'>новое</a>!')">День 1</a></li>
+            <li><a href="#" onclick="showContent('section2', 'Сегодня мы исследуем интересные <a href=\'https://github.com\' target=\'_blank\' style=\'color: #00ff00; text-decoration: none;\'>факты</a>!')">День 2</a></li>
+            <li><a href="#" onclick="showContent('section3', 'Это <a href=\'https://github.com\' target=\'_blank\' style=\'color: #00ff00; text-decoration: none;\'>база</a>.')">День 3</a></li>
+        </ul>
     </nav>
     <canvas id="interactiveTetrisCanvas" width="300" height="600"></canvas>
 </div>
