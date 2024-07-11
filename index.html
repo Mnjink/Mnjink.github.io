@@ -74,6 +74,8 @@
             padding: 10px 0;
             margin-bottom: 20px;
             text-align: center;
+            z-index: 2;
+            position: relative;
         }
 
         nav ul {
@@ -184,7 +186,7 @@
     <header>
         <h1><a href="#" onclick="showHomePage()" style="color: #00ff00; text-decoration: none;">Интерактивный сайт</a></h1>
     </header>
-    <nav>
+    <nav id="mainNav">
         <ul>
             <li><a href="#" onclick="showContent('section1', 'Сегодня мы учим что-то <a href=\'https://github.com\' target=\'_blank\' style=\'color: #00ff00; text-decoration: none;\'>новое</a>!')">День 1</a></li>
             <li><a href="#" onclick="showContent('section2', 'Сегодня мы исследуем интересные <a href=\'https://github.com\' target=\'_blank\' style=\'color: #00ff00; text-decoration: none;\'>факты</a>!')">День 2</a></li>
@@ -390,6 +392,7 @@
         });
         document.getElementById('horizontalTetris').style.display = 'flex';
         document.getElementById('interactiveTetris').style.display = 'none';
+        document.getElementById('mainNav').style.display = 'block'; // Show navigation
     }
 
     function showContent(sectionId, content) {
@@ -404,6 +407,7 @@
         section.classList.add('active');
         document.getElementById('horizontalTetris').style.display = 'none';
         document.getElementById('interactiveTetris').style.display = 'none';
+        document.getElementById('mainNav').style.display = 'block'; // Show navigation
     }
 
     function showInteractiveTetris() {
@@ -414,6 +418,7 @@
         });
         document.getElementById('horizontalTetris').style.display = 'none';
         document.getElementById('interactiveTetris').style.display = 'flex';
+        document.getElementById('mainNav').style.display = 'block'; // Show navigation
         startInteractiveTetris();
     }
 
