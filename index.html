@@ -224,6 +224,7 @@
             <li><a href="#" onclick="showContent('section3', 'Это <a href=\'https://github.com\' target=\'_blank\' style=\'color: #00ff00; text-decoration: none;\'>база</a>.')">День 3</a></li>
         </ul>
     </nav>
+    <canvas id="interactiveTetrisCanvas" width="300" height="600"></canvas>
 </div>
 <script>
     function createMatrix(w, h) {
@@ -345,6 +346,10 @@
         player.pos.y = 0;
         player.pos.x = (10 / 2 | 0) -
                     (player.matrix[0].length / 2 | 0);
+        if (collide(arena, player)) {
+            arena.forEach(row => row.fill(0));
+            playerReset(player);
+        }
     }
 
     function arenaSweep(arena, container) {
@@ -435,6 +440,10 @@
     }
 
     function startInteractiveTetris() {
+        const canvas = document.getElementById('interactiveTetrisCanvas');
+        const context = canvas.getContext('2d');
+        context.scale(20, 20);
+
         const interactiveArena = createMatrix(10, 20);
 
         const interactivePlayer = {
@@ -447,8 +456,8 @@
             if (collide(interactiveArena, interactivePlayer)) {
                 interactivePlayer.pos.y--;
                 merge(interactiveArena, interactivePlayer);
-                playerReset(interactivePlayer);
-                arenaSweep(interactiveArena, interactiveTetris);
+                playerResetInteractive();
+                arenaSweepInteractive();
             }
             dropCounterInteractive = 0;
         }
@@ -487,19 +496,54 @@
             }
         }
 
+        function drawMatrixInteractive(matrix, offset) {
+            matrix.forEach((row, y) => {
+                row.forEach((value, x) => {
+                    if (value !== 0) {
+                        context.fillStyle = '#00ff00';
+                        context.fillRect(x + offset.x, y + offset.y, 1, 1);
+                    }
+                });
+            });
+        }
+
+        function drawInteractive() {
+            context.fillStyle = '#000';
+            context.fillRect(0, 0, canvas.width, canvas.height);
+            drawMatrixInteractive(interactiveArena, {x: 0, y: 0});
+            drawMatrixInteractive(interactivePlayer.matrix, interactivePlayer.pos);
+        }
+
+        function playerResetInteractive() {
+            const pieces = 'TJLOSZI';
+            interactivePlayer.matrix = createPiece(pieces[pieces.length * Math.random() | 0]);
+            interactivePlayer.pos.y = 0;
+            interactivePlayer.pos.x = (interactiveArena[0].length / 2 | 0) - (interactivePlayer.matrix[0].length / 2 | 0);
+            if (collide(interactiveArena, interactivePlayer)) {
+                interactiveArena.forEach(row => row.fill(0));
+            }
+        }
+
+        function arenaSweepInteractive() {
+            outer: for (let y = interactiveArena.length - 1; y > 0; --y) {
+                for (let x = 0; x < interactiveArena[y].length; ++x) {
+                    if (interactiveArena[y][x] === 0) {
+                        continue outer;
+                    }
+                }
+                const row = interactiveArena.splice(y, 1)[0].fill(0);
+                interactiveArena.unshift(row);
+            }
+        }
+
         function updateInteractive(time = 0) {
             const deltaTime = time - lastTimeInteractive;
             lastTimeInteractive = time;
-
             dropCounterInteractive += deltaTime;
             if (dropCounterInteractive > dropIntervalInteractive) {
                 playerDropInteractive();
             }
-
-            interactiveTetris.innerHTML = ''; // Clear previous state
-            drawMatrix(interactiveArena, {x: 0, y: 0}, interactiveTetris);
-            drawMatrix(interactivePlayer.matrix, interactivePlayer.pos, interactiveTetris);
-
+            drawInteractive();
             requestAnimationFrame(updateInteractive);
         }
 
@@ -507,7 +551,7 @@
         let dropIntervalInteractive = 1000;
         let lastTimeInteractive = 0;
 
-        playerReset(interactivePlayer);
+        playerResetInteractive();
         updateInteractive();
 
         document.addEventListener('keydown', event => {
