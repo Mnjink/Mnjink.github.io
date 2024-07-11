@@ -184,7 +184,7 @@
 <body>
 <div class="container">
     <header>
-        <h1><a href="#" onclick="showHomePage()" style="color: #00ff00; text-decoration: none;">Интерактивный сайт</a></h1>
+        <h1 id="mainTitle"><a href="#" onclick="showHomePage()" style="color: #00ff00; text-decoration: none;">Интерактивный сайт</a></h1>
     </header>
     <nav id="mainNav">
         <ul>
@@ -215,7 +215,16 @@
 <footer>
     <p>Связь с <a href="https://github.com" target="_blank" style="color: #00ff00; text-decoration: none;">@@@@@@@</a></p>
 </footer>
-<div id="interactiveTetris" class="tetris-board"></div>
+<div id="interactiveTetris" class="tetris-board">
+    <h1 style="color: #00ff00; text-align: center;">Интерактивный сайт</h1>
+    <nav>
+        <ul>
+            <li><a href="#" onclick="showContent('section1', 'Сегодня мы учим что-то <a href=\'https://github.com\' target=\'_blank\' style=\'color: #00ff00; text-decoration: none;\'>новое</a>!')">День 1</a></li>
+            <li><a href="#" onclick="showContent('section2', 'Сегодня мы исследуем интересные <a href=\'https://github.com\' target=\'_blank\' style=\'color: #00ff00; text-decoration: none;\'>факты</a>!')">День 2</a></li>
+            <li><a href="#" onclick="showContent('section3', 'Это <a href=\'https://github.com\' target=\'_blank\' style=\'color: #00ff00; text-decoration: none;\'>база</a>.')">День 3</a></li>
+        </ul>
+    </nav>
+</div>
 <script>
     function createMatrix(w, h) {
         const matrix = [];
@@ -393,6 +402,7 @@
         document.getElementById('horizontalTetris').style.display = 'flex';
         document.getElementById('interactiveTetris').style.display = 'none';
         document.getElementById('mainNav').style.display = 'block'; // Show navigation
+        document.getElementById('mainTitle').style.display = 'block'; // Show main title
     }
 
     function showContent(sectionId, content) {
@@ -408,6 +418,7 @@
         document.getElementById('horizontalTetris').style.display = 'none';
         document.getElementById('interactiveTetris').style.display = 'none';
         document.getElementById('mainNav').style.display = 'block'; // Show navigation
+        document.getElementById('mainTitle').style.display = 'block'; // Show main title
     }
 
     function showInteractiveTetris() {
@@ -419,6 +430,7 @@
         document.getElementById('horizontalTetris').style.display = 'none';
         document.getElementById('interactiveTetris').style.display = 'flex';
         document.getElementById('mainNav').style.display = 'block'; // Show navigation
+        document.getElementById('mainTitle').style.display = 'block'; // Show main title
         startInteractiveTetris();
     }
 
