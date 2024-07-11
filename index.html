@@ -28,6 +28,38 @@
             align-items: center;
             height: 100vh;
             overflow: hidden;
+            position: relative;
+        }
+
+        /* Контейнер для фона с бегущими строками */
+        .background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            overflow: hidden;
+        }
+
+        .background .line {
+            position: absolute;
+            width: 100%;
+            height: 1em;
+            white-space: nowrap;
+            color: #00ff00;
+            font-family: 'Courier New', Courier, monospace;
+            overflow: hidden;
+            animation: scroll 5s linear infinite;
+        }
+
+        @keyframes scroll {
+            0% {
+                transform: translateX(100%);
+            }
+            100% {
+                transform: translateX(-100%);
+            }
         }
 
         .container {
@@ -39,6 +71,7 @@
             align-items: center;
             position: relative;
             overflow: hidden;
+            z-index: 1; /* Убедитесь, что контейнер выше фона */
         }
 
         .glowing-text {
@@ -182,6 +215,7 @@
     </style>
 </head>
 <body>
+<div class="background" id="background"></div>
 <div class="container">
     <header>
         <h1 id="mainTitle"><a href="#" onclick="showHomePage()" style="color: #00ff00; text-decoration: none;">Интерактивный сайт</a></h1>
@@ -221,12 +255,13 @@
         <ul>
             <li><a href="#" onclick="showContent('section1', 'Сегодня мы учим что-то <a href=\'https://github.com\' target=\'_blank\' style=\'color: #00ff00; text-decoration: none;\'>новое</a>!')">День 1</a></li>
             <li><a href="#" onclick="showContent('section2', 'Сегодня мы исследуем интересные <a href=\'https://github.com\' target=\'_blank\' style=\'color: #00ff00; text-decoration: none;\'>факты</a>!')">День 2</a></li>
-            <li><a href="#" onclick="showContent('section3', 'Это <a href=\'https://github.com\' target=\'_blank\' style=\'color: #00ff00; text-decoration: none;\'>база</a>.')">День 3</a></li>
+            <li><a href="#" onclick="showContent('section3', 'Это <a href=\'https://github.com\' target=\'_blank\' style=\'color: #00ff00; text-decoration: none;\'>база</а>.')">День 3</a></li>
         </ul>
     </nav>
     <canvas id="interactiveTetrisCanvas" width="300" height="600"></canvas>
 </div>
 <script>
+    // Функция для создания матрицы заданного размера
     function createMatrix(w, h) {
         const matrix = [];
         while (h--) {
@@ -235,6 +270,7 @@
         return matrix;
     }
 
+    // Функция для создания фигур
     function createPiece(type) {
         if (type === 'T') {
             return [
@@ -281,6 +317,7 @@
         }
     }
 
+    // Функция для отрисовки матрицы на экране
     function drawMatrix(matrix, offset, container) {
         matrix.forEach((row, y) => {
             row.forEach((value, x) => {
@@ -298,6 +335,7 @@
         });
     }
 
+    // Функция для проверки столкновений
     function collide(arena, player) {
         const [m, o] = [player.matrix, player.pos];
         for (let y = 0; y < m.length; ++y) {
@@ -312,6 +350,7 @@
         return false;
     }
 
+    // Функция для объединения арены и игрока
     function merge(arena, player) {
         player.matrix.forEach((row, y) => {
             row.forEach((value, x) => {
@@ -322,6 +361,7 @@
         });
     }
 
+    // Функция для движения фигуры вниз
     function playerDrop(arena, player, container) {
         player.pos.y++;
         if (collide(arena, player)) {
@@ -333,6 +373,7 @@
         dropCounter = 0;
     }
 
+    // Функция для движения фигуры влево или вправо
     function playerMove(dir, arena, player) {
         player.pos.x += dir;
         if (collide(arena, player)) {
@@ -340,6 +381,7 @@
         }
     }
 
+    // Функция для сброса фигуры
     function playerReset(player) {
         const pieces = 'TJLOSZI';
         player.matrix = createPiece(pieces[pieces.length * Math.random() | 0]);
@@ -352,6 +394,7 @@
         }
     }
 
+    // Функция для очистки заполненных рядов
     function arenaSweep(arena, container) {
         outer: for (let y = arena.length - 1; y > 0; --y) {
             for (let x = 0; x < arena[y].length; ++x) {
@@ -363,9 +406,10 @@
             const row = arena.splice(y, 1)[0].fill(0);
             arena.unshift(row);
         }
-        container.innerHTML = ''; // Clear container
+        container.innerHTML = ''; // Очистить контейнер
     }
 
+    // Функция для обновления игрового состояния
     function update(time = 0) {
         const deltaTime = time - lastTime;
         lastTime = time;
@@ -375,7 +419,7 @@
             playerDrop(arena, player, horizontalTetris);
         }
 
-        horizontalTetris.innerHTML = ''; // Clear previous state
+        horizontalTetris.innerHTML = ''; // Очистить предыдущий состояние
         drawMatrix(arena, {x: 0, y: 0}, horizontalTetris);
         drawMatrix(player.matrix, player.pos, horizontalTetris);
 
@@ -406,8 +450,8 @@
         });
         document.getElementById('horizontalTetris').style.display = 'flex';
         document.getElementById('interactiveTetris').style.display = 'none';
-        document.getElementById('mainNav').style.display = 'block'; // Show navigation
-        document.getElementById('mainTitle').style.display = 'block'; // Show main title
+        document.getElementById('mainNav').style.display = 'block'; // Показать навигацию
+        document.getElementById('mainTitle').style.display = 'block'; // Показать главный заголовок
     }
 
     function showContent(sectionId, content) {
@@ -422,8 +466,8 @@
         section.classList.add('active');
         document.getElementById('horizontalTetris').style.display = 'none';
         document.getElementById('interactiveTetris').style.display = 'none';
-        document.getElementById('mainNav').style.display = 'block'; // Show navigation
-        document.getElementById('mainTitle').style.display = 'block'; // Show main title
+        document.getElementById('mainNav').style.display = 'block'; // Показать навигацию
+        document.getElementById('mainTitle').style.display = 'block'; // Показать главный заголовок
     }
 
     function showInteractiveTetris() {
@@ -434,8 +478,8 @@
         });
         document.getElementById('horizontalTetris').style.display = 'none';
         document.getElementById('interactiveTetris').style.display = 'flex';
-        document.getElementById('mainNav').style.display = 'block'; // Show navigation
-        document.getElementById('mainTitle').style.display = 'block'; // Show main title
+        document.getElementById('mainNav').style.display = 'block'; // Показать навигацию
+        document.getElementById('mainTitle').style.display = 'block'; // Показать главный заголовок
         startInteractiveTetris();
     }
 
@@ -569,6 +613,7 @@
         });
     }
 
+    // Функция для создания падающих кубиков
     function startFallingCubes() {
         const container = document.querySelector('.container');
 
@@ -587,9 +632,38 @@
         setInterval(createCube, 1000); // Уменьшено количество кубиков
     }
 
+    // Функция для создания фона с бегущими строками
+    function startBackgroundCode() {
+        const background = document.getElementById('background');
+        const lines = [
+            'console.log("Hello World");',
+            'function test() { return true; }',
+            'const x = 10;',
+            'let y = x + 20;',
+            'if (x > y) { console.log("x is greater"); }',
+            'for (let i = 0; i < 10; i++) { console.log(i); }',
+        ];
+
+        function createLine() {
+            const line = document.createElement('div');
+            line.classList.add('line');
+            line.style.top = `${Math.random() * 100}%`;
+            line.style.animationDuration = `${2 + Math.random() * 3}s`;
+            line.innerText = lines[Math.floor(Math.random() * lines.length)];
+            background.appendChild(line);
+
+            line.addEventListener('animationend', () => {
+                background.removeChild(line);
+            });
+        }
+
+        setInterval(createLine, 500); // Создание строки каждые 0.5 секунды
+    }
+
     window.onload = function() {
         startHorizontalTetris();
         startFallingCubes();
+        startBackgroundCode(); // Запуск анимации фона с кодом
         showHomePage();
     };
 
