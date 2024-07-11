@@ -176,27 +176,6 @@
             position: relative;
         }
 
-        .falling-cube {
-            position: absolute;
-            background-color: #00ff00;
-            width: 20px;
-            height: 20px;
-            animation: fall linear infinite;
-        }
-
-        .tetris-board div {
-            position: absolute;
-            background-color: #00ff00;
-            width: 20px;
-            height: 20px;
-            box-sizing: border-box;
-        }
-
-        @keyframes fall {
-            from { top: -20px; }
-            to { top: 100vh; }
-        }
-
         #horizontalTetris {
             width: 200px;
             height: 400px;
@@ -224,39 +203,39 @@
         <ul>
             <li><a href="#" onclick="showContent('section1', 'Сегодня мы учим что-то <a href=\'https://github.com\' target=\'_blank\' style=\'color: #00ff00; text-decoration: none;\'>новое</a>!')">День 1</a></li>
             <li><a href="#" onclick="showContent('section2', 'Сегодня мы исследуем интересные <a href=\'https://github.com\' target=\'_blank\' style=\'color: #00ff00; text-decoration: none;\'>факты</a>!')">День 2</a></li>
-            <li><a href="#" onclick="showContent('section3', 'Это <a href=\'https://github.com\' target=\'_blank\' style=\'color: #00ff00; text-decoration: none;\'>база</a>.')">День 3</a></li>
+            <li><a href="#" onclick="showContent('section3', 'Это <a href=\'https://github.com\' target=\'_blank\' style=\'color: #00ff00; text-decoration: none;\'>база</а>.')">День 3</a></li>
             <li><button onclick="showInteractiveTetris()">Интерактив</button></li>
         </ul>
     </nav>
 
 <section id="section1">
-    <h2 onclick="showContent('section1', 'Сегодня мы учим что-то <a href=\'https://github.com\' target=\'_blank\' style=\'color: #00ff00; text-decoration: none;\'>новое</a>!')">День 1</h2>
+    <h2 onclick="showContent('section1', 'Сегодня мы учим что-то <a href=\'https://github.com\' target=\'_blank\' style=\'color: #00ff00; text-decoration: none;\'>новое</а>!')">День 1</h2>
     <p></p>
 </section>
 
 <section id="section2">
-    <h2 onclick="showContent('section2', 'Сегодня мы исследуем интересные <a href=\'https://github.com\' target=\'_blank\' style=\'color: #00ff00; text-decoration: none;\'>факты</a>!')">День 2</h2>
+    <h2 onclick="showContent('section2', 'Сегодня мы исследуем интересные <a href=\'https://github.com\' target=\'_blank\' style=\'color: #00ff00; text-decoration: none;\'>факты</а>!')">День 2</h2>
     <p></p>
 </section>
 
 <section id="section3">
-    <h2 onclick="showContent('section3', 'Это <a href=\'https://github.com\' target=\'_blank\' style=\'color: #00ff00; text-decoration: none;\'>база</a>.')">День 3</h2>
+    <h2 onclick="showContent('section3', 'Это <a href=\'https://github.com\' target=\'_blank\' style=\'color: #00ff00; text-decoration: none;\'>база</а>.')">День 3</h2>
     <p></p>
 </section>
 
 <div id="horizontalTetris" class="tetris-board"></div>
 </div>
 <footer>
-    <p>Связь с <a href="https://github.com" target="_blank" style="color: #00ff00; text-decoration: none;">@@@@@@@</a></p>
+    <p>Связь с <a href="https://github.com" target="_blank" style="color: #00ff00; text-decoration: none;">@@@@@@@</а></p>
 </footer>
 <div id="interactiveTetris" class="tetris-board">
     <h1 style="color: #00ff00; text-align: center;">Интерактивный сайт</h1>
     <nav>
         <ul>
-            <li><a href="#" onclick="showContent('section1', 'Сегодня мы учим что-то <a href=\'https://github.com\' target=\'_blank\' style=\'color: #00ff00; text-decoration: none;\'>новое</a>!')">День 1</a></li>
-            <li><a href="#" onclick="showContent('section2', 'Сегодня мы исследуем интересные <a href=\'https://github.com\' target=\'_blank\' style=\'color: #00ff00; text-decoration: none;\'>факты</a>!')">День 2</a></li>
-            <li><a href="#" onclick="showContent('section3', 'Это <a href=\'https://github.com\' target=\'_blank\' style=\'color: #00ff00; text-decoration: none;\'>база</а>.')">День 3</a></li>
-        </ul>
+            <li><a href="#" onclick="showContent('section1', 'Сегодня мы учим что-то <a href=\'https://github.com\' target=\'_blank\' style=\'color: #00ff00; text-decoration: none;\'>новое</а>!')">День 1</а></ли>
+            <li><a href="#" onclick="showContent('section2', 'Сегодня мы исследуем интересные <a href=\'https://github.com\' target=\'_blank\' style=\'color: #00ff00; text-decoration: none;\'>факты</а>!')">День 2</а></ли>
+            <ли><а href="#" onclick="showContent('section3', 'Это <a href=\'https://github.com\' target=\'_blank\' style=\'color: #00ff00; text-decoration: none;\'>база</а>.')">День 3</а></ли>
+        </ул>
     </nav>
     <canvas id="interactiveTetrisCanvas" width="300" height="600"></canvas>
 </div>
@@ -613,25 +592,6 @@
         });
     }
 
-    // Функция для создания падающих кубиков
-    function startFallingCubes() {
-        const container = document.querySelector('.container');
-
-        function createCube() {
-            const cube = document.createElement('div');
-            cube.classList.add('falling-cube');
-            cube.style.left = `${Math.random() * window.innerWidth}px`;
-            cube.style.animationDuration = `${2 + Math.random() * 3}s`;
-            container.appendChild(cube);
-
-            cube.addEventListener('animationend', () => {
-                container.removeChild(cube);
-            });
-        }
-
-        setInterval(createCube, 1000); // Уменьшено количество кубиков
-    }
-
     // Функция для создания фона с бегущими строками
     function startBackgroundCode() {
         const background = document.getElementById('background');
@@ -662,7 +622,6 @@
 
     window.onload = function() {
         startHorizontalTetris();
-        startFallingCubes();
         startBackgroundCode(); // Запуск анимации фона с кодом
         showHomePage();
     };
