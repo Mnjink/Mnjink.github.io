@@ -524,6 +524,9 @@
                 cube.style.left = `${position}px`;
             } else {
                 cube.style.left = `${Math.random() * window.innerWidth * 0.25}px`;
+                if (Math.random() > 0.5) {
+                    cube.style.left = `${window.innerWidth * 0.75 + Math.random() * window.innerWidth * 0.25}px`;
+                }
             }
             cube.style.animationDuration = `${2 + Math.random() * 3}s`;
             container.appendChild(cube);
