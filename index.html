@@ -514,7 +514,12 @@
         function createCube() {
             const cube = document.createElement('div');
             cube.classList.add('falling-cube');
-            cube.style.left = `${Math.random() * window.innerWidth}px`;
+            const position = Math.random() * window.innerWidth;
+            if (position < window.innerWidth * 0.25 || position > window.innerWidth * 0.75) {
+                cube.style.left = `${position}px`;
+            } else {
+                cube.style.left = `${Math.random() * window.innerWidth * 0.25}px`;
+            }
             cube.style.animationDuration = `${2 + Math.random() * 3}s`;
             container.appendChild(cube);
 
