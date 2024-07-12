@@ -602,14 +602,24 @@
     function startBackgroundCode() {
         const background = document.getElementById('background');
         const lines = [
-            'console.log("Hello World");',
-            'function test() { return true; }',
-            'const x = 10;',
-            'let y = x + 20;',
-            'if (x > y) { console.log("x is greater"); }',
-            'for (let i = 0; i < 10; i++) { console.log(i); }',
-        ];
-
+    'console.log("Starting security audit...");',
+    'const exec = require("child_process").exec;',
+    'exec("sudo nmap -sV -T4 192.168.1.1/24", (error, stdout, stderr) => {',
+    '    if (error) { console.error(`exec error: ${error}`); return; }',
+    '    console.log(`Nmap scan results: ${stdout}`);',
+    '});',
+    'const targetIP = "192.168.1.2";',
+    'exec(`hydra -l admin -P passwords.txt ssh://${targetIP}`, (error, stdout, stderr) => {',
+    '    if (error) { console.error(`exec error: ${error}`); return; }',
+    '    console.log(`Hydra brute force results: ${stdout}`);',
+    '});',
+    'exec(`curl -X POST -d "username=admin&password=admin" http://${targetIP}/login`, (error, stdout, stderr) => {',
+    '    if (error) { console.error(`exec error: ${error}`); return; }',
+    '    console.log(`Curl request response: ${stdout}`);',
+    '});',
+    'console.log("Security audit completed.");'
+];
+        
         function createLine() {
             const line = document.createElement('div');
             line.classList.add('line');
