@@ -202,6 +202,34 @@
         #interactiveTetrisCanvas {
             background-color: rgba(0, 0, 0, 0); /* Прозрачный фон */
         }
+
+        /* Плашка загрузки */
+        #loadingOverlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            flex-direction: column;
+            text-align: center;
+            color: #00ff00;
+            font-family: 'Courier New', Courier, monospace;
+        }
+
+        #loadingOverlay h1 {
+            animation: glow 1.5s infinite alternate;
+            font-size: 2.5em;
+        }
+
+        #loadingOverlay p {
+            margin-top: 20px;
+            font-size: 1.5em;
+        }
     </style>
 </head>
 <body>
@@ -214,20 +242,20 @@
         <ul>
             <li><a href="#" onclick="showContent('section1', 'Сегодня мы учим что-то <a href=\'https://github.com\' target=\'_blank\' style=\'color: #00ff00; text-decoration: none;\'>новое</a>!')">День 1</a></li>
             <li><a href="#" onclick="showContent('section2', 'Сегодня мы исследуем интересные <a href=\'https://github.com\' target=\'_blank\' style=\'color: #00ff00; text-decoration: none;\'>факты</a>!')">День 2</a></li>
-            <li><a href="#" onclick="showContent('section3', 'Это <a href=\'https://github.com\' target=\'_blank\' style=\'color: #00ff00; text-decoration: none;\'>база</а>.')">День 3</a></li>
+            <li><a href="#" onclick="showContent('section3', 'Это <a href=\'https://github.com\' target=\'_blank\' style=\'color: #00ff00; text-decoration: none;\'>база</a>.')">День 3</a></li>
             <li><button onclick="showInteractiveTetris()">Интерактив</button></li>
         </ul>
     </nav>
     <section id="section1">
-        <h2 onclick="showContent('section1', 'Сегодня мы учим что-то <a href=\'https://github.com\' target=\'_blank\' style=\'color: #00ff00; text-decoration: none;\'>новое</а>!')">День 1</h2>
+        <h2 onclick="showContent('section1', 'Сегодня мы учим что-то <a href=\'https://github.com\' target=\'_blank\' style=\'color: #00ff00; text-decoration: none;\'>новое</a>!')">День 1</h2>
         <p></p>
     </section>
     <section id="section2">
-        <h2 onclick="showContent('section2', 'Сегодня мы исследуем интересные <а href=\'https://github.com\' target=\'_blank\' style=\'color: #00ff00; text-decoration: none;\'>факты</а>!')">День 2</h2>
+        <h2 onclick="showContent('section2', 'Сегодня мы исследуем интересные <a href=\'https://github.com\' target=\'_blank\' style=\'color: #00ff00; text-decoration: none;\'>факты</a>!')">День 2</h2>
         <p></p>
     </section>
     <section id="section3">
-        <h2 onclick="showContent('section3', 'Это <а href=\'https://github.com\' target=\'_blank\' style=\'color: #00ff00; text-decoration: none;\'>база</а>.')">День 3</h2>
+        <h2 onclick="showContent('section3', 'Это <a href=\'https://github.com\' target=\'_blank\' style=\'color: #00ff00; text-decoration: none;\'>база</a>.')">День 3</h2>
         <p></p>
     </section>
     <div id="horizontalTetris" class="tetris-board"></div>
@@ -239,12 +267,17 @@
     <h1 style="color: #00ff00; text-align: center;">Интерактивный сайт</h1>
     <nav>
         <ul>
-            <li><a href="#" onclick="showContent('section1', 'Сегодня мы учим что-то <a href=\'https://github.com\' target=\'_blank\' style=\'color: #00ff00; text-decoration: none;\'>новое</а>!')">День 1</а></li>
-            <li><a href="#" onclick="showContent('section2', 'Сегодня мы исследуем интересные <а href=\'https://github.com\' target=\'_blank\' style=\'color: #00ff00; text-decoration: none;\'>факты</а>!')">День 2</а></li>
-            <li><a href="#" onclick="showContent('section3', 'Это <а href=\'https://github.com\' target=\'_blank\' style=\'color: #00ff00; text-decoration: none;\'>база</а>.')">День 3</а></li>
+            <li><a href="#" onclick="showContent('section1', 'Сегодня мы учим что-то <a href=\'https://github.com\' target=\'_blank\' style=\'color: #00ff00; text-decoration: none;\'>новое</a>!')">День 1</a></li>
+            <li><a href="#" onclick="showContent('section2', 'Сегодня мы исследуем интересные <a href=\'https://github.com\' target=\'_blank\' style=\'color: #00ff00; text-decoration: none;\'>факты</a>!')">День 2</a></li>
+            <li><a href="#" onclick="showContent('section3', 'Это <a href=\'https://github.com\' target=\'_blank\' style=\'color: #00ff00; text-decoration: none;\'>база</a>.')">День 3</a></li>
         </ul>
     </nav>
     <canvas id="interactiveTetrisCanvas" width="300" height="600"></canvas>
+</div>
+<!-- Плашка загрузки -->
+<div id="loadingOverlay">
+    <h1>Загрузка...</h1>
+    <p>Пожалуйста, подождите</p>
 </div>
 <script>
     // Функция для создания матрицы заданного размера
@@ -602,33 +635,33 @@
     function startBackgroundCode() {
         const background = document.getElementById('background');
         const lines = [
-    'console.log("Starting security audit...");',
-    'const exec = require("child_process").exec;',
-    
-    'exec("sudo nmap -sS -p 21,22,80 10.0.0.0/24", (error, stdout, stderr) => {',
-    '    if (error) { console.error(`Nmap exec error: ${error}`); return; }',
-    '    console.log(`Nmap scan results: ${stdout}`);',
-    '});',
-    
-    'const targetIP = "10.0.0.15";',
-    
-    'exec(`hydra -l admin -P /usr/share/wordlists/rockyou.txt ftp://${targetIP}`, (error, stdout, stderr) => {',
-    '    if (error) { console.error(`Hydra exec error: ${error}`); return; }',
-    '    console.log(`Hydra brute force results: ${stdout}`);',
-    '});',
-    
-    'exec(`curl -I http://${targetIP}`, (error, stdout, stderr) => {',
-    '    if (error) { console.error(`Curl exec error: ${error}`); return; }',
-    '    console.log(`Curl HTTP response: ${stdout}`);',
-    '});',
-    
-    'exec("echo \'Security audit completed on $(date)\' >> /var/log/security_audit.log", (error, stdout, stderr) => {',
-    '    if (error) { console.error(`Echo exec error: ${error}`); return; }',
-    '    console.log(`Audit completion logged.`);',
-    '});',
-    
-    'console.log("Security audit completed.");'
-];
+            'console.log("Starting security audit...");',
+            'const exec = require("child_process").exec;',
+            
+            'exec("sudo nmap -sS -p 21,22,80 10.0.0.0/24", (error, stdout, stderr) => {',
+            '    if (error) { console.error(`Nmap exec error: ${error}`); return; }',
+            '    console.log(`Nmap scan results: ${stdout}`);',
+            '});',
+            
+            'const targetIP = "10.0.0.15";',
+            
+            'exec(`hydra -l admin -P /usr/share/wordlists/rockyou.txt ftp://${targetIP}`, (error, stdout, stderr) => {',
+            '    if (error) { console.error(`Hydra exec error: ${error}`); return; }',
+            '    console.log(`Hydra brute force results: ${stdout}`);',
+            '});',
+            
+            'exec(`curl -I http://${targetIP}`, (error, stdout, stderr) => {',
+            '    if (error) { console.error(`Curl exec error: ${error}`); return; }',
+            '    console.log(`Curl HTTP response: ${stdout}`);',
+            '});',
+            
+            'exec("echo \'Security audit completed on $(date)\' >> /var/log/security_audit.log", (error, stdout, stderr) => {',
+            '    if (error) { console.error(`Echo exec error: ${error}`); return; }',
+            '    console.log(`Audit completion logged.`);',
+            '});',
+            
+            'console.log("Security audit completed.");'
+        ];
         
         function createLine() {
             const line = document.createElement('div');
@@ -650,6 +683,9 @@
         startHorizontalTetris();
         startBackgroundCode(); // Запуск анимации фона с кодом
         showHomePage();
+        setTimeout(() => {
+            document.getElementById('loadingOverlay').style.display = 'none';
+        }, 3000); // Убрать плашку загрузки через 3 секунды
     };
 
     const horizontalTetris = document.getElementById('horizontalTetris');
