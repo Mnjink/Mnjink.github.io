@@ -274,11 +274,6 @@
     </nav>
     <canvas id="interactiveTetrisCanvas" width="300" height="600"></canvas>
 </div>
-<!-- Плашка загрузки -->
-<div id="loadingOverlay">
-    <h1>Загрузка...</h1>
-    <p>Пожалуйста, подождите</p>
-</div>
 <script>
     // Функция для создания матрицы заданного размера
     function createMatrix(w, h) {
@@ -683,9 +678,7 @@
         startHorizontalTetris();
         startBackgroundCode(); // Запуск анимации фона с кодом
         showHomePage();
-        setTimeout(() => {
-            document.getElementById('loadingOverlay').style.display = 'none';
-        }, 3000); // Убрать плашку загрузки через 3 секунды
+        
     };
 
     const horizontalTetris = document.getElementById('horizontalTetris');
