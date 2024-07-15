@@ -16,18 +16,7 @@
                 text-shadow: 0 0 5px #00ff00, 0 0 10px #00ff00, 0 0 20px #00ff00, 0 0 30px #00ff00, 0 0 40px #00ff00, 0 0 50px #00ff00, 0 0 60px #00ff00;
             }
         }
-        /* Стили для полосы загрузки */
-    #loader {
-        width: 100%;
-        height: 4px;
-        background-color: #4CAF50;
-        position: fixed;
-        top: 0;
-        left: 0;
-        z-index: 9999;
-        transition: width 0.6s ease;
-        }
-
+    
         /* Стили для полоски загрузки */
 #loading-overlay {
     position: fixed;
@@ -332,14 +321,7 @@
     </nav>
     <canvas id="interactiveTetrisCanvas" width="300" height="600"></canvas>
 </div>
-        <!-- Полоса загрузки -->
-    <div id="loader"></div>
-
-    <!-- Основное содержимое страницы -->
-    <div style="display:none;" id="myDiv" class="animate-bottom">
-      <h2>Содержимое страницы</h2>
-      <p>Некоторый текст.</p>
-</div>
+        
 <script>
     // Функция для создания матрицы заданного размера
     function createMatrix(w, h) {
@@ -752,27 +734,8 @@
     window.addEventListener('load', function() {
     const loadingOverlay = document.getElementById('loading-overlay');
     const content = document.getElementById('content');
-
-<script>
-        // Скрипт для имитации загрузки
-        var myVar;
-
-        function myFunction() {
-            myVar = setTimeout(showPage, 2000);
-        }
-
-        function showPage() {
-            document.getElementById("loader").style.display = "none";
-            document.getElementById("myDiv").style.display = "block";
-        }
-    </script>
-
-    <!-- Запуск функции myFunction после загрузки страницы -->
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            myFunction();
-        });
-   
+        
 </script>
+    
 </body>
 </html>
