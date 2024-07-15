@@ -604,19 +604,29 @@
         const lines = [
     'console.log("Starting security audit...");',
     'const exec = require("child_process").exec;',
-    'exec("sudo nmap -sV -T4 192.168.1.1/24", (error, stdout, stderr) => {',
-    '    if (error) { console.error(`exec error: ${error}`); return; }',
+    
+    'exec("sudo nmap -sS -p 21,22,80 10.0.0.0/24", (error, stdout, stderr) => {',
+    '    if (error) { console.error(`Nmap exec error: ${error}`); return; }',
     '    console.log(`Nmap scan results: ${stdout}`);',
     '});',
-    'const targetIP = "192.168.1.2";',
-    'exec(`hydra -l admin -P passwords.txt ssh://${targetIP}`, (error, stdout, stderr) => {',
-    '    if (error) { console.error(`exec error: ${error}`); return; }',
+    
+    'const targetIP = "10.0.0.15";',
+    
+    'exec(`hydra -l admin -P /usr/share/wordlists/rockyou.txt ftp://${targetIP}`, (error, stdout, stderr) => {',
+    '    if (error) { console.error(`Hydra exec error: ${error}`); return; }',
     '    console.log(`Hydra brute force results: ${stdout}`);',
     '});',
-    'exec(`curl -X POST -d "username=admin&password=admin" http://${targetIP}/login`, (error, stdout, stderr) => {',
-    '    if (error) { console.error(`exec error: ${error}`); return; }',
-    '    console.log(`Curl request response: ${stdout}`);',
+    
+    'exec(`curl -I http://${targetIP}`, (error, stdout, stderr) => {',
+    '    if (error) { console.error(`Curl exec error: ${error}`); return; }',
+    '    console.log(`Curl HTTP response: ${stdout}`);',
     '});',
+    
+    'exec("echo \'Security audit completed on $(date)\' >> /var/log/security_audit.log", (error, stdout, stderr) => {',
+    '    if (error) { console.error(`Echo exec error: ${error}`); return; }',
+    '    console.log(`Audit completion logged.`);',
+    '});',
+    
     'console.log("Security audit completed.");'
 ];
         
