@@ -312,13 +312,6 @@
 </footer>
 <div id="interactiveTetris" class="tetris-board">
     <h1 style="color: #00ff00; text-align: center;">Интерактивный сайт</h1>
-    <nav>
-        <ul>
-            <li><a href="#" onclick="showContent('section1', 'Сегодня мы учим что-то <a href=\'https://github.com\' target=\'_blank\' style=\'color: #00ff00; text-decoration: none;\'>новое</a>!')">День 1</a></li>
-            <li><a href="#" onclick="showContent('section2', 'Сегодня мы исследуем интересные <a href=\'https://github.com\' target=\'_blank\' style=\'color: #00ff00; text-decoration: none;\'>факты</a>!')">День 2</a></li>
-            <li><a href="#" onclick="showContent('section3', 'Это <a href=\'https://github.com\' target=\'_blank\' style=\'color: #00ff00; text-decoration: none;\'>база</a>.')">День 3</a></li>
-        </ul>
-    </nav>
     <canvas id="interactiveTetrisCanvas" width="300" height="600"></canvas>
 </div>
 
@@ -540,8 +533,8 @@
         });
         document.getElementById('horizontalTetris').style.display = 'none';
         document.getElementById('interactiveTetris').style.display = 'flex';
-        document.getElementById('mainNav').style.display = 'block'; // Показать навигацию
-        document.getElementById('mainTitle').style.display = 'block'; // Показать главный заголовок
+        document.getElementById('mainNav').style.display = 'none'; // Скрыть навигацию
+        document.getElementById('mainTitle').style.display = 'none'; // Скрыть главный заголовок
         startInteractiveTetris();
     }
 
