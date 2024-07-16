@@ -632,7 +632,12 @@
             });
         }
 
+        function resetBackground() {
+            background.innerHTML = ''; // Очистить содержимое фона
+        }
+
         setInterval(createLine, 500); // Создание строки каждые 0.5 секунды
+        setInterval(resetBackground, 100000); // Сбрасывать каждые 100 секунд
     }
 
     window.onload = function() {
