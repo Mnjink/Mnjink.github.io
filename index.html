@@ -5,60 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hacker site</title>
     <style>
-        @keyframes glow {
-            0% {
-                text-shadow: 0 0 5px #00ff00, 0 0 10px #00ff00, 0 0 20px #00ff00, 0 0 30px #00ff00, 0 0 40px #00ff00, 0 0 50px #00ff00, 0 0 60px #00ff00;
-            }
-            50% {
-                text-shadow: 0 0 10px #00ff00, 0 0 20px #00ff00, 0 0 30px #00ff00, 0 0 40px #00ff00, 0 0 50px #00ff00, 0 0 60px #00ff00, 0 0 70px #00ff00;
-            }
-            100% {
-                text-shadow: 0 0 5px #00ff00, 0 0 10px #00ff00, 0 0 20px #00ff00, 0 0 30px #00ff00, 0 0 40px #00ff00, 0 0 50px #00ff00, 0 0 60px #00ff00;
-            }
-        }
-
-        /* Стили для полоски загрузки */
-        #loading-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: white;
-            z-index: 9999;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        #loading-bar {
-            width: 100px;
-            height: 10px;
-            background-color: #3498db;
-            position: relative;
-            overflow: hidden;
-        }
-
-        #loading-bar::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background-color: #2980b9;
-            animation: loading 1.5s infinite;
-        }
-
-        @keyframes loading {
-            0% {
-                left: -100%;
-            }
-            100% {
-                left: 100%;
-            }
-        }
-
         /* Стили для контента */
         #content {
             display: none; /* Прячем контент до полной загрузки */
@@ -249,34 +195,7 @@
         #interactiveTetrisCanvas {
             background-color: rgba(0, 0, 0, 0); /* Прозрачный фон */
         }
-
-        /* Плашка загрузки */
-        #loadingOverlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.8);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 9999;
-            flex-direction: column;
-            text-align: center;
-            color: #00ff00;
-            font-family: 'Courier New', Courier, monospace;
-        }
-
-        #loadingOverlay h1 {
-            animation: glow 1.5s infinite alternate;
-            font-size: 2.5em;
-        }
-
-        #loadingOverlay p {
-            margin-top: 20px;
-            font-size: 1.5em;
-        }
+        
     </style>
 </head>
 <body>
@@ -728,11 +647,6 @@
     window.addEventListener('load', function() {
         const loadingOverlay = document.getElementById('loading-overlay');
         const content = document.getElementById('content');
-        // Assuming you want to remove the loading overlay after some time or event
-        setTimeout(() => {
-            loadingOverlay.style.display = 'none';
-            content.style.display = 'block';
-        }, 3000); // Change the timeout as needed
     });
 </script>
 </body>
